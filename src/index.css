@@ -1,0 +1,243 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import "tailwindcss";
+
+:root {
+  color-scheme: dark;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: #060b14;
+  color: #94a3b8;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─── Noise texture ───────────────────────────────── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ─── Ambient orbs ────────────────────────────────── */
+.bg-orb-1 {
+  position: fixed;
+  top: -15rem;
+  left: -10rem;
+  width: 50rem;
+  height: 50rem;
+  border-radius: 9999px;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.07) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.bg-orb-2 {
+  position: fixed;
+  bottom: -20rem;
+  right: -10rem;
+  width: 55rem;
+  height: 55rem;
+  border-radius: 9999px;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.05) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ─── Card ────────────────────────────────────────── */
+.card {
+  background: rgba(255, 255, 255, 0.018);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 14px;
+  padding: 1.75rem;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.card:hover {
+  border-color: rgba(59, 130, 246, 0.22);
+  background: rgba(255, 255, 255, 0.026);
+}
+
+/* Accent left-bar variant */
+.card-accent {
+  padding-left: 2rem;
+}
+.card-accent::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, #3b82f6, #6366f1);
+  border-radius: 2px;
+}
+
+/* ─── Tag pills ───────────────────────────────────── */
+.tag {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  padding: 0.2rem 0.65rem;
+  background: rgba(59, 130, 246, 0.08);
+  color: #93c5fd;
+  border: 1px solid rgba(59, 130, 246, 0.18);
+  border-radius: 999px;
+}
+
+/* ─── Skill badge ─────────────────────────────────── */
+.skill-badge {
+  font-size: 0.8rem;
+  font-weight: 500;
+  padding: 0.35rem 0.85rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 8px;
+  color: #cbd5e1;
+  transition: border-color 0.15s, color 0.15s;
+}
+.skill-badge:hover {
+  border-color: rgba(99, 102, 241, 0.35);
+  color: #e2e8f0;
+}
+
+/* ─── Text gradient ───────────────────────────────── */
+.text-gradient {
+  background: linear-gradient(135deg, #e2e8f0 0%, #7dd3fc 50%, #818cf8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── Divider ─────────────────────────────────────── */
+.section-divider {
+  border: none;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(255,255,255,0.06), transparent);
+}
+
+/* ─── Scrollbar ───────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #060b14; }
+::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 6px; }
+::-webkit-scrollbar-thumb:hover { background: #334155; }
+
+/* ════════════════════════════════════════════════════
+   RESPONSIVE UTILITIES
+   All media-query-driven layout classes live here so
+   components can use them alongside inline styles.
+════════════════════════════════════════════════════ */
+
+/* ─── Hero heading ────────────────────────────────── */
+.hero-heading {
+  font-size: 2.25rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  color: #f1f5f9;
+  margin-bottom: 20px;
+}
+@media (min-width: 480px)  { .hero-heading { font-size: 2.75rem; } }
+@media (min-width: 768px)  { .hero-heading { font-size: 3.5rem;  } }
+@media (min-width: 1024px) { .hero-heading { font-size: 4rem;    } }
+
+/* ─── Navbar: show/hide desktop vs mobile ─────────── */
+.nav-links-desktop {
+  display: none;
+  align-items: center;
+  gap: 28px;
+}
+@media (min-width: 768px) { .nav-links-desktop { display: flex; } }
+
+.nav-mobile-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@media (min-width: 768px) { .nav-mobile-btn { display: none; } }
+
+/* ─── Projects grid ───────────────────────────────── */
+.grid-projects {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+@media (min-width: 600px)  { .grid-projects { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 900px)  { .grid-projects { grid-template-columns: repeat(3, 1fr); } }
+
+/* ─── Skills grid ─────────────────────────────────── */
+.grid-skills {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+@media (min-width: 640px) { .grid-skills { grid-template-columns: repeat(2, 1fr); } }
+
+/* ─── Card row (experience / education) ───────────── */
+.card-row {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+@media (min-width: 640px) {
+  .card-row {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 24px;
+  }
+}
+
+/* ─── About CTA buttons row ───────────────────────── */
+.btn-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+
+/* ─── Footer bottom bar ───────────────────────────── */
+.footer-bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  text-align: center;
+  padding: 24px 0;
+}
+@media (min-width: 640px) {
+  .footer-bottom {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    text-align: left;
+  }
+}
+
+/* ─── Section padding (tighter on mobile) ─────────── */
+.section-pt { padding-top: 48px; }
+@media (min-width: 768px) { .section-pt { padding-top: 64px; } }
+
+.section-pb { padding-bottom: 32px; }
+@media (min-width: 768px) { .section-pb { padding-bottom: 48px; } }
+
+.hero-pt { padding-top: 80px; }
+@media (min-width: 768px) { .hero-pt { padding-top: 96px; } }
+

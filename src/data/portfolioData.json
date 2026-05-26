@@ -1,0 +1,108 @@
+{
+  "about": {
+    "name": "Manikandan",
+    "title": "Full Stack Developer",
+    "tagline": "I build systems that scale — from student projects to government infrastructure.",
+    "description": "While most developers write code, I ship products. As a CS undergrad in Tamil Nadu, I've already deployed a government-grade platform managing 200,000+ engineering seats across 500+ colleges — and freelanced an EdTech app used by real students. I specialize in the full MERN stack, cloud infrastructure, and turning complex backend challenges into clean, fast, and reliable user experiences."
+  },
+  "projects": [
+    {
+      "projectNo": 1,
+      "title": "C³ – Quiz & Student Activity Platform",
+      "tagline": "A freelance EdTech product — from idea to production.",
+      "highlights": [
+        "Built a cross-platform EdTech product featuring a mobile app for students and an admin portal for quiz management, real-time evaluation, and analytics.",
+        "Handled end-to-end development including backend API architecture, database design, and cloud deployment solo.",
+        "Empowered 6+ administrators to evaluate submissions efficiently and track activity for 100+ active students."
+      ],
+      "description": "A freelance EdTech platform delivering real-time quiz participation and activity tracking. Built the full product — mobile app, admin portal, backend, and cloud deployment — independently.",
+      "githubLink": "https://github.com/itzmani05-cmd",
+      "liveDemoLink": "",
+      "techStack": ["React JS", "React Native", "Node JS", "Express JS", "MongoDB"]
+    },
+    {
+      "projectNo": 2,
+      "title": "Engineering College Insights Platform",
+      "tagline": "Making 500+ colleges' data explorable and actionable.",
+      "highlights": [
+        "Designed a full-stack analytics platform with a React interface featuring advanced search, filtering, and course-wise/cutoff-wise analytics.",
+        "Developed scalable RESTful APIs and optimized MongoDB database queries for fast data retrieval.",
+        "Consolidated fragmented data across 500+ engineering colleges (courses, cutoffs, intake) into an explorable and actionable dashboard."
+      ],
+      "description": "A full-stack web application for exploring and analyzing data from 500+ engineering colleges, featuring advanced search, cutoff analytics, and a scalable REST API backend.",
+      "githubLink": "https://github.com/itzmani05-cmd",
+      "liveDemoLink": "",
+      "techStack": ["React JS", "Node JS", "Express JS", "MongoDB", "Ant Design"]
+    },
+    {
+      "projectNo": 3,
+      "title": "TNEA Seat-Matrix Portal",
+      "tagline": "Government-grade infrastructure. Built as a student.",
+      "highlights": [
+        "Architected and deployed a full-stack portal on AWS (EC2 + S3 + NGINX) to manage Tamil Nadu's engineering admission seat allocation.",
+        "Built a real-time admin dashboard, secure document handling system, and reusable React UI components for seamless institutional access.",
+        "Delivered highly reliable, scalable infrastructure to manage 200,000+ government seats across 500+ colleges with zero tolerance for downtime."
+      ],
+      "description": "A statewide seat-allocation system used by 500+ engineering colleges across Tamil Nadu to manage 200,000+ government seats — with admin dashboards, cloud storage, and NGINX-served production deployment.",
+      "githubLink": "https://github.com/itzmani05-cmd",
+      "liveDemoLink": "",
+      "techStack": ["React JS", "Node JS", "Express JS", "MongoDB", "AWS EC2", "AWS S3", "NGINX"]
+    }
+  ],
+  "experience": [
+    {
+      "id": 1,
+      "role": "Full Stack Developer",
+      "company": "TNEA – Tamil Nadu Engineering Admissions",
+      "duration": "Mar 2025 – Nov 2025",
+      "location": "Coimbatore, Tamil Nadu",
+      "summary": "Led end-to-end development of a government-grade seat-allocation platform used statewide.",
+      "highlights": [
+        "Built and deployed a seat-matrix portal adopted by 500+ engineering colleges across Tamil Nadu for government seat allocation.",
+        "Streamlined data entry for 200,000+ seats — replacing entirely manual, error-prone processes with a centralized online system.",
+        "Architected a real-time admin dashboard for live college submission tracking and seat allocation reporting.",
+        "Integrated AWS S3 for secure document storage, improving data accessibility and retrieval efficiency.",
+        "Served as primary technical contact — debugging, user support, and system reliability across the full deployment lifecycle.",
+        "Developed responsive, reusable React UI components ensuring cross-device access for all 500+ institution users."
+      ],
+      "techStack": ["React JS", "Node JS", "Express JS", "MongoDB", "AWS EC2", "AWS S3", "Antd", "NGINX"]
+    }
+  ],
+  "education": [
+    {
+      "id": 1,
+      "degree": "BE – Computer Science and Engineering",
+      "institution": "Government College of Technology, Coimbatore",
+      "year": "Sep 2023 – Present",
+      "cgpa": "7.3 / 10",
+      "note": "Shipped production systems during active enrollment."
+    }
+  ],
+  "skills": {
+    "Programming Languages": ["JavaScript", "C", "Java", "Python"],
+    "Frontend & Mobile":     ["React JS", "React Native", "HTML & CSS", "Tailwind CSS", "Ant Design"],
+    "Backend & Cloud":       ["Node JS", "Express JS", "Nest JS", "RESTful APIs", "Nginx", "AWS EC2", "AWS S3"],
+    "Database & ORM":        ["MySQL", "MongoDB", "Supabase", "Prisma", "PostgreSQL"],
+    "Tools":                 ["Git & GitHub", "Insomnia", "Figma"]
+  },
+  "certificates": [
+    { "id": 1, "title": "AWS Certified Cloud Practitioner", "issuer": "Udemy" },
+    { "id": 2, "title": "Web Developer for Beginner",        "issuer": "Simplilearn" }
+  ],
+  "githubStats": {
+    "totalContributions": "111",
+    "totalRange": "Oct 28, 2024 - Present",
+    "currentStreak": "3",
+    "currentDate": "May 20 - May 22",
+    "longestStreak": "3",
+    "longestRange": "Mar 15, 2025 - Mar 17, 2025",
+    "totalRepositories": "24"
+  },
+  "contact": {
+    "email":    "itzmani2005@gmail.com",
+    "phone":    "+91 6369925623",
+    "github":   "https://github.com/itzmani05-cmd",
+    "linkedin": "https://linkedin.com/in/manikandan005",
+    "location": "Ariyalur, Tamil Nadu"
+  }
+}
