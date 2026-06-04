@@ -2,7 +2,8 @@ import {
   SiJavascript, SiPython, SiReact, SiHtml5, SiTailwindcss, SiAntdesign,
   SiNodedotjs, SiExpress, SiNestjs, SiNginx,
   SiMysql, SiMongodb, SiSupabase, SiPrisma, SiPostgresql,
-  SiGit, SiGithub, SiInsomnia, SiFigma, SiC
+  SiGit, SiGithub, SiInsomnia, SiFigma, SiC,
+  SiDocker, SiPostman, SiNpm
 } from 'react-icons/si';
 import { FaJava, FaAws } from 'react-icons/fa';
 import { FiCode } from 'react-icons/fi';
@@ -32,6 +33,10 @@ const iconMap = {
   'insomnia': { icon: SiInsomnia, color: '#4000bf' },
   'figma': { icon: SiFigma, color: '#f24e1e' },
   'antd': { icon: SiAntdesign, color: '#0170fe' },
+  'vs code': { icon: FiCode, color: '#007acc' },
+  'docker': { icon: SiDocker, color: '#2496ed' },
+  'postman': { icon: SiPostman, color: '#ff6c37' },
+  'npm': { icon: SiNpm, color: '#cb3837' },
 };
 
 export const getTechIcon = (name) => {
