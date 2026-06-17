@@ -205,71 +205,83 @@ const GithubStats = () => {
         </div>
 
         {loading ? (
-          /* Loading skeleton */
-          <div style={{ display: 'flex', gap: 2 }}>
+          /* Loading skeleton — full width */
+          <div style={{ display: 'flex', gap: 2, width: '100%' }}>
             {Array.from({ length: 53 }).map((_, wi) => (
-              <div key={wi} style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+              <div key={wi} style={{ display: 'flex', flexDirection: 'column', gap: 2, flex: 1 }}>
                 {Array.from({ length: 7 }).map((_, di) => (
-                  <div key={di} style={{ width: 11, height: 11, borderRadius: 2, background: 'rgba(255,255,255,0.04)', animation: 'pulse 1.5s ease-in-out infinite', animationDelay: `${(wi + di) * 0.02}s` }} />
+                  <div key={di} style={{ width: '100%', height: 11, borderRadius: 2, background: 'rgba(255,255,255,0.04)', animation: 'pulse 1.5s ease-in-out infinite', animationDelay: `${(wi + di) * 0.02}s` }} />
                 ))}
               </div>
             ))}
           </div>
         ) : (
           <>
-            {/* Month labels */}
-            <div style={{ position: 'relative', height: 16, marginBottom: 4, paddingLeft: 28 }}>
-              {monthLabels.map(({ label, wi }) => (
-                <span key={`${label}-${wi}`} style={{ position: 'absolute', left: wi * 13 + 28, fontSize: 10, color: '#475569', fontWeight: 600 }}>
-                  {label}
-                </span>
-              ))}
-            </div>
+            {/* Full-width wrapper */}
+            <div style={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
 
-            {/* Day labels + grid */}
-            <div style={{ display: 'flex', gap: 4, alignItems: 'flex-start' }}>
-              {/* Day labels */}
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 2, flexShrink: 0 }}>
-                {DAY_LABELS.map((d, i) => (
-                  <span key={d} style={{ fontSize: 9, color: '#334155', height: 11, lineHeight: '11px', width: 24, textAlign: 'right' }}>
-                    {i % 2 === 1 ? d : ''}
+              {/* Month labels — percentage-positioned relative to grid */}
+              <div style={{ position: 'relative', height: 16, marginBottom: 4, paddingLeft: 28, width: '100%' }}>
+                {monthLabels.map(({ label, wi }) => (
+                  <span
+                    key={`${label}-${wi}`}
+                    style={{
+                      position: 'absolute',
+                      left: `calc(28px + ${(wi / Math.max(heatmap.length, 1)) * 100}% * ((100% - 28px) / 100%))`,
+                      fontSize: 10, color: '#475569', fontWeight: 600,
+                    }}
+                  >
+                    {label}
                   </span>
                 ))}
               </div>
 
-              {/* Weeks grid */}
-              <div style={{ display: 'flex', gap: 2 }}>
-                {heatmap.map((week, wi) => (
-                  <div key={wi} style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-                    {week.map((day, di) => (
-                      <div
-                        key={di}
-                        onMouseEnter={() => day && setTooltip(day)}
-                        onMouseLeave={() => setTooltip(null)}
-                        style={{
-                          width: 11, height: 11, borderRadius: 2,
-                          background: day ? LEVEL_COLORS[day.level] : 'rgba(255,255,255,0.025)',
-                          border: '1px solid rgba(255,255,255,0.04)',
-                          transition: 'transform 0.1s, filter 0.1s',
-                          cursor: day?.count > 0 ? 'pointer' : 'default',
-                        }}
-                        onMouseOver={e => { if (day?.level > 0) { e.currentTarget.style.transform = 'scale(1.5)'; e.currentTarget.style.filter = 'brightness(1.5)'; } }}
-                        onMouseOut={e => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.filter = 'brightness(1)'; }}
-                      />
-                    ))}
-                  </div>
-                ))}
-              </div>
-            </div>
+              {/* Day labels + grid */}
+              <div style={{ display: 'flex', gap: 4, alignItems: 'flex-start', width: '100%' }}>
+                {/* Day labels */}
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 2, flexShrink: 0 }}>
+                  {DAY_LABELS.map((d, i) => (
+                    <span key={d} style={{ fontSize: 9, color: '#334155', height: 11, lineHeight: '11px', width: 24, textAlign: 'right' }}>
+                      {i % 2 === 1 ? d : ''}
+                    </span>
+                  ))}
+                </div>
 
-            {/* Legend */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: 5, marginTop: 12, justifyContent: 'flex-end' }}>
-              <span style={{ fontSize: 10, color: '#334155', marginRight: 2 }}>Less</span>
-              {LEVEL_COLORS.map((bg, i) => (
-                <div key={i} style={{ width: 11, height: 11, borderRadius: 2, background: bg, border: '1px solid rgba(255,255,255,0.06)' }} />
-              ))}
-              <span style={{ fontSize: 10, color: '#334155', marginLeft: 2 }}>More</span>
-            </div>
+                {/* Weeks grid — each column stretches to fill */}
+                <div style={{ display: 'flex', gap: 2, flex: 1, width: '100%' }}>
+                  {heatmap.map((week, wi) => (
+                    <div key={wi} style={{ display: 'flex', flexDirection: 'column', gap: 2, flex: 1, minWidth: 0 }}>
+                      {week.map((day, di) => (
+                        <div
+                          key={di}
+                          onMouseEnter={() => day && setTooltip(day)}
+                          onMouseLeave={() => setTooltip(null)}
+                          style={{
+                            width: '100%', height: 11, borderRadius: 2,
+                            background: day ? LEVEL_COLORS[day.level] : 'rgba(255,255,255,0.025)',
+                            border: '1px solid rgba(255,255,255,0.04)',
+                            transition: 'transform 0.1s, filter 0.1s',
+                            cursor: day?.count > 0 ? 'pointer' : 'default',
+                          }}
+                          onMouseOver={e => { if (day?.level > 0) { e.currentTarget.style.transform = 'scale(1.5)'; e.currentTarget.style.filter = 'brightness(1.5)'; } }}
+                          onMouseOut={e => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.filter = 'brightness(1)'; }}
+                        />
+                      ))}
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Legend */}
+              <div style={{ display: 'flex', alignItems: 'center', gap: 5, marginTop: 12, justifyContent: 'flex-end' }}>
+                <span style={{ fontSize: 10, color: '#334155', marginRight: 2 }}>Less</span>
+                {LEVEL_COLORS.map((bg, i) => (
+                  <div key={i} style={{ width: 11, height: 11, borderRadius: 2, background: bg, border: '1px solid rgba(255,255,255,0.06)' }} />
+                ))}
+                <span style={{ fontSize: 10, color: '#334155', marginLeft: 2 }}>More</span>
+              </div>
+
+            </div>{/* end full-width wrapper */}
           </>
         )}
       </div>
