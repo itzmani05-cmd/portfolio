@@ -2,6 +2,7 @@ import data from '../data/portfolioData.json';
 import { FiLayout, FiDatabase, FiTerminal, FiLayers, FiCode } from 'react-icons/fi';
 import { getTechIcon } from './TechIcon';
 import { useInView } from '../hooks/useInView';
+import { Player } from '@lottiefiles/react-lottie-player';
 
 const eyebrow = { fontSize: 11, fontWeight: 600, letterSpacing: '0.16em', textTransform: 'uppercase', color: '#3b82f6', marginBottom: 10, display: 'block' };
 const sectionTitle = { fontSize: '1.75rem', fontWeight: 700, letterSpacing: '-0.02em', color: '#f1f5f9', marginBottom: 32, lineHeight: 1.2 };
@@ -30,7 +31,7 @@ const categoryMeta = {
   "Tools": {
     icon: FiCode,
     color: { bg: 'rgba(236,72,153,0.1)', color: '#f472b6' },
-    skills: ["Git & GitHub", "VS Code", "Docker", "Postman", "Figma", "npm"],
+    skills: ["Git & GitHub", "VS Code", "Postman", "Figma", "npm"],
   },
 };
 
@@ -41,14 +42,38 @@ const Skills = () => {
   return (
     <section id="skills" className="section-pt section-pb">
       <span style={eyebrow}>Expertise</span>
-      <h2 style={sectionTitle}>Skills &amp; Tools</h2>
 
+      {/* Heading row with rocket sticker on the right */}
+      <div style={{ position: 'relative', marginBottom: 0 }}>
+        <h2 style={sectionTitle}>Skills &amp; Tools</h2>
+
+        {/* 🚀 Rocket sticker — top right above grid */}
+        <div style={{
+          position: 'absolute',
+          top: -60,
+          right: -10,
+          width: 130,
+          height: 130,
+          pointerEvents: 'none',
+          zIndex: 5,
+        }}>
+          <Player
+            autoplay
+            loop
+            src="/skills-rocket.json"
+            style={{ width: '100%', height: '100%' }}
+          />
+        </div>
+      </div>
+
+      {/* Skills grid — with extra right padding so rocket doesn't overlap last card */}
       <div
         ref={ref}
         style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
+          gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
           gap: 20,
+          position: 'relative',
         }}
       >
         {Object.entries(categoryMeta).map(([category, meta], i) => {
@@ -97,7 +122,23 @@ const Skills = () => {
         })}
       </div>
 
-      <hr className="section-divider" style={{ marginTop: 32 }} />
+      {/* 🧑‍💻 Display man sticker — bottom right after grid */}
+      <div style={{
+        display: 'flex',
+        justifyContent: 'flex-end',
+        marginTop: -20,
+        marginRight: -10,
+        pointerEvents: 'none',
+      }}>
+        <Player
+          autoplay
+          loop
+          src="/skills-man.json"
+          style={{ width: 160, height: 160 }}
+        />
+      </div>
+
+      <hr className="section-divider" style={{ marginTop: 8 }} />
     </section>
   );
 };

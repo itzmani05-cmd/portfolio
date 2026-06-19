@@ -1,5 +1,5 @@
 import data from '../data/portfolioData.json';
-import { FiGithub, FiChevronRight, FiZap } from 'react-icons/fi';
+import { FiGithub, FiChevronRight, FiZap, FiExternalLink } from 'react-icons/fi';
 import { getTechIcon } from './TechIcon';
 import { useInView } from '../hooks/useInView';
 
@@ -18,171 +18,159 @@ const scaleMeta = {
   2: { label: '500+ Colleges · Full Analytics', color: '#a78bfa', bg: 'rgba(139,92,246,0.1)', border: 'rgba(139,92,246,0.2)' },
 };
 
-/* ── Featured (full-width) card for the flagship project ── */
-const FeaturedCard = ({ project, visible }) => {
-  const scale = scaleMeta[project.projectNo];
-  return (
-    <div
-      className={`card card-featured reveal${visible ? ' in-view' : ''}`}
-      style={{ padding: '32px 36px', position: 'relative' }}
-    >
-      {/* Gradient top bar */}
-      <div style={{
-        position: 'absolute', insetInline: 0, top: 0, height: 3,
-        background: 'linear-gradient(90deg, #3b82f6, #6366f1, #a78bfa)',
-        borderRadius: '14px 14px 0 0',
-      }} />
-
-      {/* Badges row */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 20, flexWrap: 'wrap' }}>
-        <span className="badge-flagship">🏆 Flagship Project</span>
-        {scale && (
-          <span className="badge-scale" style={{
-            color: scale.color, background: scale.bg, border: `1px solid ${scale.border}`,
-          }}>
-            {scale.label}
-          </span>
-        )}
-      </div>
-
-      <h3 style={{ fontSize: '1.3rem', fontWeight: 800, color: '#f1f5f9', marginBottom: 6, lineHeight: 1.35 }}>
-        {project.title}
-      </h3>
-      <p style={{ fontSize: 14, fontWeight: 600, color: '#60a5fa', marginBottom: 26 }}>
-        {project.tagline}
-      </p>
-
-      {/* Highlights in 2-col grid on wide screens */}
-      {project.highlights && (
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-          gap: '10px 28px',
-          marginBottom: 28,
-        }}>
-          {project.highlights.map((h, i) => (
-            <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 8, fontSize: 14, lineHeight: 1.65, color: '#94a3b8' }}>
-              <FiChevronRight size={14} color="#6366f1" style={{ marginTop: 4, flexShrink: 0 }} />
-              <span>{h}</span>
-            </div>
-          ))}
-        </div>
-      )}
-
-      {/* Tech stack */}
-      {project.techStack && (
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginBottom: 22 }}>
-          {project.techStack.map(tech => {
-            const { icon: Icon, color: iconColor } = getTechIcon(tech);
-            return (
-              <span key={tech} className="tag" style={{ display: 'inline-flex', alignItems: 'center', gap: 5 }}>
-                <Icon color={iconColor} size={12} />{tech}
-              </span>
-            );
-          })}
-        </div>
-      )}
-
-      {/* Footer */}
-      <div style={{
-        display: 'flex', alignItems: 'center', gap: 24, flexWrap: 'wrap',
-        paddingTop: 18, borderTop: '1px solid rgba(255,255,255,0.06)',
-      }}>
-        {project.githubLink && (
-          <a
-            href={project.githubLink}
-            target="_blank"
-            rel="noreferrer"
-            style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 13, fontWeight: 600, color: '#64748b', textDecoration: 'none', transition: 'color 0.15s' }}
-            onMouseEnter={e => e.currentTarget.style.color = '#e2e8f0'}
-            onMouseLeave={e => e.currentTarget.style.color = '#64748b'}
-          >
-            <FiGithub size={14} /> Source Code
-          </a>
-        )}
-        <span style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 13, color: '#475569' }}>
-          <FiZap size={13} color="#fbbf24" />
-          Government-deployed · Contact for a live walkthrough
-        </span>
-      </div>
-    </div>
-  );
+const accentColors = {
+  1: { line: '#34d399', glow: 'rgba(16,185,129,0.15)', num: '#34d399' },
+  2: { line: '#a78bfa', glow: 'rgba(139,92,246,0.15)', num: '#a78bfa' },
+  3: { line: '#60a5fa', glow: 'rgba(59,130,246,0.15)', num: '#60a5fa' },
 };
 
-/* ── Regular card for other projects ── */
-const ProjectCard = ({ project, visible, delay }) => {
-  const scale = scaleMeta[project.projectNo];
+/* ── Row card — horizontal line-by-line layout ── */
+const ProjectRow = ({ project, visible, delay, index }) => {
+  const scale  = scaleMeta[project.projectNo];
+  const accent = accentColors[project.projectNo] || accentColors[1];
+  const isFlagship = project.projectNo === 3;
+
   return (
     <div
-      className={`card reveal${visible ? ' in-view' : ''}`}
-      style={{
-        display: 'flex', flexDirection: 'column', height: '100%', alignSelf: 'stretch',
-        padding: '24px', transitionDelay: `${delay}s`,
-      }}
+      className={`reveal${visible ? ' in-view' : ''}`}
+      style={{ transitionDelay: `${delay}s` }}
     >
-      {/* Hover top bar */}
-      <div style={{
-        position: 'absolute', insetInline: 0, top: 0, height: 2,
-        background: 'linear-gradient(90deg, #3b82f6, #6366f1)',
-        borderRadius: '14px 14px 0 0', opacity: 0, transition: 'opacity 0.25s',
-      }}
-        onMouseEnter={e => e.target.style.opacity = 1}
-      />
+      <div
+        className="card"
+        style={{
+          padding: '28px 32px',
+          position: 'relative',
+          display: 'flex',
+          gap: 32,
+          alignItems: 'flex-start',
+          overflow: 'hidden',
+        }}
+      >
+        {/* Left accent bar */}
+        <div style={{
+          position: 'absolute', left: 0, top: 0, bottom: 0, width: 3,
+          background: `linear-gradient(to bottom, ${accent.line}, transparent)`,
+          borderRadius: '14px 0 0 14px',
+        }} />
 
-      {/* Scale badge */}
-      {scale && (
-        <span className="badge-scale" style={{
-          color: scale.color, background: scale.bg, border: `1px solid ${scale.border}`,
-          marginBottom: 14, alignSelf: 'flex-start',
+        {/* Project number */}
+        <div style={{
+          flexShrink: 0,
+          width: 48, height: 48,
+          borderRadius: 13,
+          background: accent.glow,
+          border: `1px solid ${accent.line}33`,
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          fontSize: '1.1rem', fontWeight: 900,
+          color: accent.num,
+          marginTop: 2,
         }}>
-          {scale.label}
-        </span>
-      )}
-
-      <h3 style={{ fontSize: 17, fontWeight: 700, color: '#e2e8f0', marginBottom: 6, lineHeight: 1.4 }}>
-        {project.title}
-      </h3>
-      <p style={{ fontSize: 13, fontWeight: 500, color: '#60a5fa', marginBottom: 20 }}>
-        {project.tagline}
-      </p>
-
-      {project.highlights && project.highlights.length > 0 && (
-        <ul style={{ flex: '1 1 auto', listStyle: 'none', padding: 0, margin: '0 0 22px', display: 'flex', flexDirection: 'column', gap: 10 }}>
-          {project.highlights.map((h, idx) => (
-            <li key={idx} style={{ display: 'flex', alignItems: 'flex-start', gap: 8, fontSize: 13.5, lineHeight: 1.65, color: '#94a3b8' }}>
-              <FiChevronRight size={13} color="#6366f1" style={{ marginTop: 4, flexShrink: 0 }} />
-              <span>{h}</span>
-            </li>
-          ))}
-        </ul>
-      )}
-
-      {project.techStack && (
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginBottom: 18 }}>
-          {project.techStack.map(tech => {
-            const { icon: Icon, color: iconColor } = getTechIcon(tech);
-            return (
-              <span key={tech} className="tag" style={{ display: 'inline-flex', alignItems: 'center', gap: 4, fontSize: '0.66rem' }}>
-                <Icon color={iconColor} size={11} />{tech}
-              </span>
-            );
-          })}
+          {String(index + 1).padStart(2, '0')}
         </div>
-      )}
 
-      <div style={{ display: 'flex', gap: 20, paddingTop: 14, borderTop: '1px solid rgba(255,255,255,0.05)', marginTop: 'auto' }}>
-        {project.githubLink && (
-          <a
-            href={project.githubLink}
-            target="_blank"
-            rel="noreferrer"
-            style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 13, fontWeight: 600, color: '#64748b', textDecoration: 'none', transition: 'color 0.15s' }}
-            onMouseEnter={e => e.currentTarget.style.color = '#e2e8f0'}
-            onMouseLeave={e => e.currentTarget.style.color = '#64748b'}
-          >
-            <FiGithub size={14} /> Source Code
-          </a>
-        )}
+        {/* Main content */}
+        <div style={{ flex: 1, minWidth: 0 }}>
+
+          {/* Header row */}
+          <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', flexWrap: 'wrap', gap: 10, marginBottom: 14 }}>
+            <div>
+              {isFlagship && (
+                <span style={{
+                  display: 'inline-flex', alignItems: 'center', gap: 5,
+                  fontSize: 10, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase',
+                  color: '#f59e0b', background: 'rgba(245,158,11,0.1)',
+                  border: '1px solid rgba(245,158,11,0.25)', borderRadius: 999,
+                  padding: '3px 10px', marginBottom: 8,
+                }}>
+                  🏆 Flagship Project
+                </span>
+              )}
+              <h3 style={{ fontSize: '1.1rem', fontWeight: 800, color: '#f1f5f9', lineHeight: 1.3, margin: 0 }}>
+                {project.title}
+              </h3>
+              <p style={{ fontSize: 13, fontWeight: 500, color: accent.line, marginTop: 4, marginBottom: 0 }}>
+                {project.tagline}
+              </p>
+            </div>
+
+            {/* Scale badge */}
+            {scale && (
+              <span style={{
+                flexShrink: 0,
+                fontSize: 11, fontWeight: 700, padding: '4px 12px', borderRadius: 999,
+                color: scale.color, background: scale.bg, border: `1px solid ${scale.border}`,
+                whiteSpace: 'nowrap',
+              }}>
+                {scale.label}
+              </span>
+            )}
+          </div>
+
+          {/* Highlights — line by line */}
+          {project.highlights && project.highlights.length > 0 && (
+            <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 18px', display: 'flex', flexDirection: 'column', gap: 8 }}>
+              {project.highlights.map((h, idx) => (
+                <li key={idx} style={{ display: 'flex', alignItems: 'flex-start', gap: 8, fontSize: 13.5, lineHeight: 1.65, color: '#94a3b8' }}>
+                  <FiChevronRight size={13} color={accent.line} style={{ marginTop: 4, flexShrink: 0 }} />
+                  <span>{h}</span>
+                </li>
+              ))}
+            </ul>
+          )}
+
+          {/* Footer row — tech stack + links */}
+          <div style={{
+            display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+            flexWrap: 'wrap', gap: 12,
+            paddingTop: 16, borderTop: '1px solid rgba(255,255,255,0.05)',
+          }}>
+            {/* Tech tags */}
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
+              {project.techStack && project.techStack.map(tech => {
+                const { icon: Icon, color: iconColor } = getTechIcon(tech);
+                return (
+                  <span key={tech} className="tag" style={{ display: 'inline-flex', alignItems: 'center', gap: 4, fontSize: '0.67rem' }}>
+                    <Icon color={iconColor} size={11} />{tech}
+                  </span>
+                );
+              })}
+            </div>
+
+            {/* Links */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+              {isFlagship && (
+                <span style={{ display: 'flex', alignItems: 'center', gap: 5, fontSize: 12, color: '#475569' }}>
+                  <FiZap size={12} color="#fbbf24" /> Government-deployed
+                </span>
+              )}
+              {project.githubLink && (
+                <a
+                  href={project.githubLink}
+                  target="_blank"
+                  rel="noreferrer"
+                  style={{ display: 'flex', alignItems: 'center', gap: 5, fontSize: 13, fontWeight: 600, color: '#64748b', textDecoration: 'none', transition: 'color 0.15s' }}
+                  onMouseEnter={e => e.currentTarget.style.color = '#e2e8f0'}
+                  onMouseLeave={e => e.currentTarget.style.color = '#64748b'}
+                >
+                  <FiGithub size={14} /> Source Code
+                </a>
+              )}
+              {project.liveDemoLink && (
+                <a
+                  href={project.liveDemoLink}
+                  target="_blank"
+                  rel="noreferrer"
+                  style={{ display: 'flex', alignItems: 'center', gap: 5, fontSize: 13, fontWeight: 600, color: accent.line, textDecoration: 'none', transition: 'opacity 0.15s' }}
+                  onMouseEnter={e => e.currentTarget.style.opacity = '0.75'}
+                  onMouseLeave={e => e.currentTarget.style.opacity = '1'}
+                >
+                  <FiExternalLink size={13} /> Live Demo
+                </a>
+              )}
+            </div>
+          </div>
+
+        </div>
       </div>
     </div>
   );
@@ -193,32 +181,54 @@ const Projects = () => {
   const { projects } = data;
   const [ref, inView] = useInView();
 
-  const featured = projects.find(p => p.projectNo === 3);
-  const others   = projects.filter(p => p.projectNo !== 3)
-                            .sort((a, b) => a.projectNo - b.projectNo);
+  const sorted = [...projects].sort((a, b) => a.projectNo - b.projectNo);
 
   return (
     <section id="projects" className="section-pt section-pb">
       <span style={eyebrow}>Case Studies</span>
       <h2 style={sectionTitle}>Engineering Projects</h2>
 
-      <div ref={ref} style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
-        {/* Regular cards first (C³ and Engineering College Insights) */}
-        <div className="grid-projects">
-          {others.map((project, i) => (
-            <ProjectCard
+      {/* Outer wrapper — relative so the character can be absolute */}
+      <div style={{ position: 'relative' }}>
+
+        {/* Floating boy character — top-right, above the list */}
+        <div style={{
+          position: 'absolute',
+          top: -210,
+          right: -10,
+          width: 240,
+          height: 220,
+          zIndex: 10,
+          pointerEvents: 'none',
+        }}>
+          <img
+            src="/dev-boy.png"
+            alt="Developer character"
+            style={{
+              width: '100%',
+              height: '100%',
+              objectFit: 'contain',
+              animation: 'devBoyFloat 4s ease-in-out infinite',
+              filter: 'drop-shadow(0 6px 20px rgba(0,0,0,0.4))',
+            }}
+          />
+        </div>
+
+        {/* Project rows — plain stacked, no box */}
+        <div
+          ref={ref}
+          style={{ display: 'flex', flexDirection: 'column', gap: 16 }}
+        >
+          {sorted.map((project, i) => (
+            <ProjectRow
               key={project.projectNo}
               project={project}
               visible={inView}
-              delay={i * 0.13}
+              delay={i * 0.12}
+              index={i}
             />
           ))}
         </div>
-
-        {/* Flagship TNEA card featured at the bottom */}
-        {featured && (
-          <FeaturedCard project={featured} visible={inView} />
-        )}
       </div>
 
       <hr className="section-divider" style={{ marginTop: 40 }} />
@@ -227,3 +237,4 @@ const Projects = () => {
 };
 
 export default Projects;
+

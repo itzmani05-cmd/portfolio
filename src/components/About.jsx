@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
+import { Player } from '@lottiefiles/react-lottie-player';
 import data from '../data/portfolioData.json';
 import {
   FiGithub, FiLinkedin, FiArrowRight, FiMapPin,
@@ -159,12 +160,12 @@ const About = () => {
         <div className="hero-split-left">
 
           {/* Availability */}
-          {/* <div style={{ marginBottom: 20 }} className="hero-stagger-1">
+          <div style={{ marginBottom: 20 }} className="hero-stagger-1">
             <span className="availability-badge">
               <span className="green-dot" />
               Open to Opportunities
             </span>
-          </div> */}
+          </div>
 
           {/* Name */}
           <h1 className="hero-split-name hero-stagger-2">{about.name}</h1>
@@ -200,53 +201,22 @@ const About = () => {
           </div>
         </div>
 
-        {/* RIGHT ─ transparent overlay column (face shows through background) */}
-        <div className="hero-split-right hero-stagger-img">
-          <div className="hero-float-col">
-
-            {/* Top badge */}
-            <div className="hero-float-badge">
-              <span className="hero-float-badge-dot" />
-              Available for Work
-            </div>
-
-            {/* Tech stack chips */}
-            <div className="hero-float-chips">
-              <span className="hero-float-chip">⚛ React</span>
-              <span className="hero-float-chip">🟩 Node.js</span>
-              <span className="hero-float-chip">☁ AWS</span>
-              <span className="hero-float-chip">🍃 MongoDB</span>
-              <span className="hero-float-chip">⚡ Vite</span>
-              <span className="hero-float-chip">🐳 NGINX</span>
-            </div>
-
-            {/* Floating stat card */}
-            <div className="hero-float-card">
-              <div className="hero-float-card-row">
-                <span className="hero-float-stat-num">100+</span>
-                <span className="hero-float-stat-label">Students Used the App</span>
-              </div>
-              <div className="hero-float-card-divider" />
-              <div className="hero-float-card-row">
-                <span className="hero-float-stat-num">500+</span>
-                <span className="hero-float-stat-label">Colleges Served</span>
-              </div>
-              <div className="hero-float-card-divider" />
-              <div className="hero-float-card-row">
-                <span className="hero-float-stat-num">3+</span>
-                <span className="hero-float-stat-label">Production Apps</span>
-              </div>
-            </div>
-
-            {/* Code tag */}
-            <div className="hero-float-code">
-              <span style={{ color: '#64748b' }}>const</span>{' '}
-              <span style={{ color: '#7dd3fc' }}>dev</span>{' '}
-              <span style={{ color: '#f8fafc' }}>=</span>{' '}
-              <span style={{ color: '#f59e0b' }}>"Manikandan"</span>
-              <span className="typewriter-cursor" style={{ marginLeft: 2 }} />
-            </div>
-
+        {/* RIGHT — 3D developer Lottie animation */}
+        <div className="hero-split-right hero-stagger-img" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+          <div style={{ position: 'relative', width: '100%', maxWidth: 460 }}>
+            {/* Ambient glow behind animation */}
+            <div style={{
+              position: 'absolute', inset: '15%',
+              background: 'radial-gradient(circle, rgba(245,158,11,0.10) 0%, rgba(99,102,241,0.07) 55%, transparent 80%)',
+              borderRadius: '50%', filter: 'blur(40px)', zIndex: 0,
+              animation: 'floatOrb 7s ease-in-out infinite',
+            }} />
+            <Player
+              autoplay
+              loop
+              src="/developer.json"
+              style={{ width: '100%', height: 'auto', position: 'relative', zIndex: 1 }}
+            />
           </div>
         </div>
 

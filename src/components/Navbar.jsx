@@ -41,7 +41,7 @@ const Navbar = ({ container }) => {
             {initials}
           </span>
           <span style={{ fontWeight: 700, color: '#e2e8f0', letterSpacing: '-0.01em', fontSize: 15 }}>
-            {about.name}
+            Manikandan's Portfolio
           </span>
         </a>
 
@@ -59,6 +59,17 @@ const Navbar = ({ container }) => {
             </a>
           ))}
 
+          {/* Open to Opportunity badge */}
+          <span style={{
+            display: 'inline-flex', alignItems: 'center', gap: 6,
+            fontSize: 12, fontWeight: 700, padding: '5px 12px', borderRadius: 999,
+            background: 'rgba(16,185,129,0.1)', border: '1px solid rgba(16,185,129,0.28)',
+            color: '#34d399', letterSpacing: '0.03em',
+          }}>
+            <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#22c55e', boxShadow: '0 0 6px rgba(34,197,94,0.8)', display: 'inline-block' }} />
+            Open to Opportunity
+          </span>
+
           {/* Resume download */}
           <a
             href={about.resumeLink || '/resume.pdf'}
@@ -74,22 +85,6 @@ const Navbar = ({ container }) => {
             onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.1)'; e.currentTarget.style.color = '#cbd5e1'; e.currentTarget.style.background = 'rgba(255,255,255,0.05)'; }}
           >
             <FiDownload size={13} /> Resume
-          </a>
-
-          {/* Hire me */}
-          <a
-            href={`mailto:${contact.email}`}
-            style={{
-              fontSize: 13, fontWeight: 700, padding: '7px 18px', borderRadius: 8,
-              background: 'linear-gradient(135deg, #3b82f6, #6366f1)',
-              color: '#fff', textDecoration: 'none',
-              boxShadow: '0 4px 14px rgba(59,130,246,0.3)',
-              transition: 'transform 0.2s, box-shadow 0.2s',
-            }}
-            onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-1px)'; e.currentTarget.style.boxShadow = '0 8px 20px rgba(59,130,246,0.4)'; }}
-            onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = '0 4px 14px rgba(59,130,246,0.3)'; }}
-          >
-            Hire Me
           </a>
         </div>
 
@@ -125,7 +120,16 @@ const Navbar = ({ container }) => {
               </a>
             ))}
 
-            <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', paddingTop: 8, borderTop: '1px solid rgba(255,255,255,0.05)' }}>
+            <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', paddingTop: 8, borderTop: '1px solid rgba(255,255,255,0.05)', alignItems: 'center' }}>
+              <span style={{
+                display: 'inline-flex', alignItems: 'center', gap: 6,
+                fontSize: 12, fontWeight: 700, padding: '7px 14px', borderRadius: 999,
+                background: 'rgba(16,185,129,0.1)', border: '1px solid rgba(16,185,129,0.28)',
+                color: '#34d399',
+              }}>
+                <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#22c55e', boxShadow: '0 0 6px rgba(34,197,94,0.8)', display: 'inline-block' }} />
+                Open to Opportunity
+              </span>
               <a
                 href={about.resumeLink || '/resume.pdf'}
                 download
@@ -138,18 +142,6 @@ const Navbar = ({ container }) => {
                 }}
               >
                 <FiDownload size={13} /> Resume
-              </a>
-              <a
-                href={`mailto:${contact.email}`}
-                onClick={() => setIsOpen(false)}
-                style={{
-                  display: 'inline-flex', alignItems: 'center', gap: 7,
-                  fontSize: 13, fontWeight: 700, padding: '9px 18px', borderRadius: 9,
-                  background: 'linear-gradient(135deg, #3b82f6, #6366f1)',
-                  color: '#fff', textDecoration: 'none',
-                }}
-              >
-                Hire Me
               </a>
             </div>
           </div>
