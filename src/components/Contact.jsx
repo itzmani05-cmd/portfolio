@@ -67,18 +67,6 @@ const Contact = () => {
     <section id="contact" className="section-pt section-pb">
       <span style={eyebrow}>Get In Touch</span>
       <h2 style={sectionTitle}>Let's Build Something Great</h2>
-
-      <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 32 }}>
-        <span className="green-dot-static" />
-        <p style={{ fontSize: 15, color: '#64748b', maxWidth: 540, lineHeight: 1.7 }}>
-          Currently{' '}
-          <span style={{ color: '#34d399', fontWeight: 700 }}>
-            open to full-time roles &amp; freelance projects
-          </span>
-          . Best reached via WhatsApp or email for a quick response.
-        </p>
-      </div>
-
       {/* Location */}
       {contact.location && (
         <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 36, color: '#475569', fontSize: 13, fontWeight: 500 }}>
@@ -153,44 +141,6 @@ const Contact = () => {
           );
         })}
       </div>
-
-      {/* CTA buttons */}
-      <div className="btn-row">
-        <a
-          href={`https://wa.me/${contact.phone?.replace(/[^0-9]/g, '')}`}
-          target="_blank"
-          rel="noreferrer"
-          style={{
-            display: 'inline-flex', alignItems: 'center', gap: 9,
-            padding: '13px 26px', borderRadius: 12, fontSize: 14, fontWeight: 700,
-            color: '#fff', textDecoration: 'none',
-            background: 'linear-gradient(135deg, #22c55e, #16a34a)',
-            boxShadow: '0 8px 24px rgba(34,197,94,0.25)',
-            transition: 'transform 0.2s, box-shadow 0.2s',
-          }}
-          onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 14px 32px rgba(34,197,94,0.35)'; }}
-          onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = '0 8px 24px rgba(34,197,94,0.25)'; }}
-        >
-          <FaWhatsapp size={17} /> Message on WhatsApp
-        </a>
-
-        <a
-          href={`mailto:${contact.email}`}
-          style={{
-            display: 'inline-flex', alignItems: 'center', gap: 9,
-            padding: '13px 26px', borderRadius: 12, fontSize: 14, fontWeight: 700,
-            color: '#fff', textDecoration: 'none',
-            background: 'linear-gradient(135deg, #3b82f6, #6366f1)',
-            boxShadow: '0 8px 24px rgba(59,130,246,0.25)',
-            transition: 'transform 0.2s, box-shadow 0.2s',
-          }}
-          onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 14px 32px rgba(59,130,246,0.35)'; }}
-          onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = '0 8px 24px rgba(59,130,246,0.25)'; }}
-        >
-          <FiSend size={15} /> Send an Email
-        </a>
-      </div>
-
       <hr className="section-divider" style={{ marginTop: 48 }} />
     </section>
   );

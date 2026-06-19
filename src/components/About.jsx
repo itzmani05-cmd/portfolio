@@ -6,13 +6,12 @@ import {
 } from 'react-icons/fi';
 
 const roles = [
-  'FULL-STACK ENGINEER',
-  'MERN STACK EXPERT',
+  'FULL-STACK DEVELOPER',
+  'MERN STACK',
   'CLOUD & BACKEND ARCHITECT',
   'SYSTEM DESIGNER',
 ];
 
-/* ── AI voice script (action-style male intro) ────────────── */
 const VOICE_SCRIPT = `
 Code. Ship. Repeat.
 
@@ -160,12 +159,12 @@ const About = () => {
         <div className="hero-split-left">
 
           {/* Availability */}
-          <div style={{ marginBottom: 20 }} className="hero-stagger-1">
+          {/* <div style={{ marginBottom: 20 }} className="hero-stagger-1">
             <span className="availability-badge">
               <span className="green-dot" />
               Open to Opportunities
             </span>
-          </div>
+          </div> */}
 
           {/* Name */}
           <h1 className="hero-split-name hero-stagger-2">{about.name}</h1>
@@ -177,16 +176,8 @@ const About = () => {
             <span className="typewriter-cursor" />
           </div>
 
-          {/* Location */}
-          <div className="hero-split-location hero-stagger-4">
-            <FiMapPin size={14} />
-            <span>{contact.location}</span>
-          </div>
-
           {/* Bio */}
           <p className="hero-split-bio hero-stagger-5">{about.description}</p>
-
-
 
           {/* CTA buttons */}
           <div className="hero-split-btns hero-stagger-6">
@@ -206,24 +197,6 @@ const About = () => {
                 <FiLinkedin size={18} />
               </a>
             )}
-          </div>
-
-          {/* Mini stats */}
-          <div className="hero-mini-stats hero-stagger-6">
-            <div className="hero-mini-stat">
-              <span className="hero-mini-num">500+</span>
-              <span className="hero-mini-label">Colleges Served</span>
-            </div>
-            <div className="hero-stat-sep" />
-            <div className="hero-mini-stat">
-              <span className="hero-mini-num">200K+</span>
-              <span className="hero-mini-label">Gov't Seats Managed</span>
-            </div>
-            <div className="hero-stat-sep" />
-            <div className="hero-mini-stat">
-              <span className="hero-mini-num">3+</span>
-              <span className="hero-mini-label">Production Apps</span>
-            </div>
           </div>
         </div>
 
@@ -250,8 +223,8 @@ const About = () => {
             {/* Floating stat card */}
             <div className="hero-float-card">
               <div className="hero-float-card-row">
-                <span className="hero-float-stat-num">200K+</span>
-                <span className="hero-float-stat-label">Gov't Seats Managed</span>
+                <span className="hero-float-stat-num">100+</span>
+                <span className="hero-float-stat-label">Students Used the App</span>
               </div>
               <div className="hero-float-card-divider" />
               <div className="hero-float-card-row">

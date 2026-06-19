@@ -3,7 +3,7 @@
     "name": "Manikandan",
     "title": "Full Stack Developer",
     "tagline": "I build systems that scale — from student projects to government infrastructure.",
-    "description": "While most developers write code, I ship products. As a CS undergrad in Tamil Nadu, I've already deployed a government-grade platform managing 200,000+ engineering seats across 500+ colleges — and freelanced an EdTech app used by real students. I specialize in the full MERN stack, cloud infrastructure, and turning complex backend challenges into clean, fast, and reliable user experiences.",
+    "description": "While most developers write code, I ship products. As a CS undergrad in Tamil Nadu, I've freelanced an EdTech app used by real students. I specialize in the full MERN stack, cloud infrastructure, and turning complex backend challenges into clean, fast, and reliable user experiences.",
     "resumeLink": "/resume.pdf"
   },
   "projects": [
@@ -13,7 +13,7 @@
       "tagline": "A freelance EdTech product — from idea to production.",
       "highlights": [
         "Built a cross-platform EdTech product featuring a mobile app for students and an admin portal for quiz management, real-time evaluation, and analytics.",
-        "Handled end-to-end development including backend API architecture, database design, and cloud deployment solo.",
+        "Handled end-to-end development including backend API architecture and database design.",
         "Empowered 6+ administrators to evaluate submissions efficiently and track activity for 100+ active students."
       ],
       "description": "A freelance EdTech platform delivering real-time quiz participation and activity tracking. Built the full product — mobile app, admin portal, backend, and cloud deployment — independently.",
@@ -44,7 +44,7 @@
         "Built a real-time admin dashboard, secure document handling system, and reusable React UI components for seamless institutional access.",
         "Delivered highly reliable, scalable infrastructure to manage 200,000+ government seats across 500+ colleges with zero tolerance for downtime."
       ],
-      "description": "A statewide seat-allocation system used by 500+ engineering colleges across Tamil Nadu to manage 200,000+ government seats — with admin dashboards, cloud storage, and NGINX-served production deployment.",
+      "description": "A statewide seat-allocation system used by 500+ engineering colleges across Tamil Nadu to manage 200,000+ government seats - with admin dashboards, cloud storage, and NGINX-served production deployment.",
       "githubLink": "https://github.com/itzmani05-cmd",
       "liveDemoLink": "",
       "techStack": ["React JS", "Node JS", "Express JS", "MongoDB", "AWS EC2", "AWS S3", "NGINX"]

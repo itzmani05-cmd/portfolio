@@ -15,14 +15,8 @@ const Footer = ({ container }) => {
 
   return (
     <footer style={{ borderTop: '1px solid rgba(255,255,255,0.06)', position: 'relative', zIndex: 1 }}>
-
-
-
-      {/* Bottom bar — stacks on mobile, row on tablet+ */}
       <div style={container}>
         <div className="footer-bottom">
-
-
           <p style={{ fontSize: 12, color: '#475569' }}>
             © {new Date().getFullYear()} {about.name}. All rights reserved.
           </p>

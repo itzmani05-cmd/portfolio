@@ -2,10 +2,9 @@ import { useState, useEffect, useRef } from 'react';
 import { useInView } from '../hooks/useInView';
 
 const metrics = [
-  { end: 200,  suffix: 'K+', label: 'Government Seats\nManaged',       color: '#60a5fa', glow: 'rgba(59,130,246,0.15)'  },
   { end: 500,  suffix: '+',  label: 'Engineering Colleges\nServed',     color: '#34d399', glow: 'rgba(16,185,129,0.15)'  },
   { end: 100,  suffix: '+',  label: 'Active Students\non EdTech App',   color: '#a78bfa', glow: 'rgba(139,92,246,0.15)' },
-  { end: 3,    suffix: '',   label: 'Full-Stack Products\nShipped Solo', color: '#fbbf24', glow: 'rgba(251,191,36,0.15)' },
+  { end: 2,    suffix: '',   label: 'Full-Stack Products\nShipped Solo', color: '#fbbf24', glow: 'rgba(251,191,36,0.15)' },
 ];
 
 const easeOut = (t) => 1 - Math.pow(1 - t, 3);

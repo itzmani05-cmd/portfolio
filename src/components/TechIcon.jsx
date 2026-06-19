@@ -34,7 +34,6 @@ const iconMap = {
   'figma': { icon: SiFigma, color: '#f24e1e' },
   'antd': { icon: SiAntdesign, color: '#0170fe' },
   'vs code': { icon: FiCode, color: '#007acc' },
-  'docker': { icon: SiDocker, color: '#2496ed' },
   'postman': { icon: SiPostman, color: '#ff6c37' },
   'npm': { icon: SiNpm, color: '#cb3837' },
 };
