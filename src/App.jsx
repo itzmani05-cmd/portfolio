@@ -1,77 +1,48 @@
-import { useState } from 'react';
-import Navbar         from './components/Navbar';
-import About          from './components/About';
-import ImpactBar      from './components/ImpactBar';
-import Experience     from './components/Experience';
-import Projects       from './components/Projects';
-import Skills         from './components/Skills';
-import GithubStats    from './components/GithubStats';
-import Education      from './components/Education';
-import Certificates   from './components/Certificates';
-import Contact        from './components/Contact';
-import Footer         from './components/Footer';
-import ScrollToTop    from './components/ScrollToTop';
-import CinematicIntro from './components/CinematicIntro';
+import {
+  About,
+  Certificates,
+  Contact,
+  Education,
+  Experience,
+  Footer,
+  GithubStats,
+  ImpactBar,
+  Navbar,
+  Projects,
+  ScrollToTop,
+  Skills,
+} from './components';
+import { appShell, mainContent, pageContainer } from './config/layout';
 
-const CONTAINER = {
-  maxWidth: '1440px',
-  marginLeft:  'auto',
-  marginRight: 'auto',
-  paddingLeft:  '1.5rem',
-  paddingRight: '1.5rem',
-  width: '100%',
-  boxSizing: 'border-box',
-};
-
-export { CONTAINER };
+const portfolioSections = [
+  ImpactBar,
+  Experience,
+  Projects,
+  Skills,
+  GithubStats,
+  Education,
+  Certificates,
+  Contact,
+];
 
 function App() {
-  const [introVisible, setIntroVisible] = useState(true);
-
   return (
-    <div style={{ background: '#060b14', minHeight: '100vh', position: 'relative' }}>
-      {/* Cinematic intro — plays once, then reveals portfolio */}
-      <CinematicIntro onDone={() => setIntroVisible(false)} />
+    <div style={appShell}>
       <div className="bg-orb-1" />
       <div className="bg-orb-2" />
 
-      <Navbar container={CONTAINER} />
+      <Navbar container={pageContainer} />
 
-      <main style={{ position: 'relative', zIndex: 1 }}>
-
-        {/* 1. Hero — full viewport width, manages its own container */}
-        <About container={CONTAINER} />
-
-        <div style={CONTAINER}>
-          {/* 2. Impact numbers */}
-          <ImpactBar />
-
-          {/* 3. Experience */}
-          <Experience />
-
-          {/* 4. Projects */}
-          <Projects />
-
-          {/* 5. Skills */}
-          <Skills />
-
-          {/* 6. GitHub activity */}
-          <GithubStats />
-
-          {/* 7. Education */}
-          <Education />
-
-          {/* 8. Certificates */}
-          <Certificates />
-
-          {/* 9. Contact */}
-          <Contact />
+      <main style={mainContent}>
+        <About />
+        <div style={pageContainer}>
+          {portfolioSections.map((Section) => (
+            <Section key={Section.name} />
+          ))}
         </div>
       </main>
 
-      <Footer container={CONTAINER} />
-
-      {/* Floating scroll-to-top */}
+      <Footer container={pageContainer} />
       <ScrollToTop />
     </div>
   );

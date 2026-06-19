@@ -1,10 +1,6 @@
 import { useState, useEffect } from 'react';
 import { FiArrowUp } from 'react-icons/fi';
 
-/**
- * Floating "Back to top" button.
- * Appears after scrolling 400 px down with a smooth slide-in animation.
- */
 const ScrollToTop = () => {
   const [visible, setVisible] = useState(false);
 

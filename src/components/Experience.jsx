@@ -12,9 +12,8 @@ const sectionTitle = {
   color: '#f1f5f9', marginBottom: 32, lineHeight: 1.2,
 };
 
-/* Bold the numbers/percentages inside highlight text */
 const HighlightText = ({ text }) => {
-  const parts = text.split(/(\d[\d,+]*[\+\%]?(?:\s*\+)?(?:\s*colleges?|\s*seats?|\s*institutions?)?)/gi);
+  const parts = text.split(/(\d[\d,+]*[+%]?(?:\s*\+)?(?:\s*colleges?|\s*seats?|\s*institutions?)?)/gi);
   return (
     <>
       {parts.map((part, i) =>
@@ -46,14 +45,12 @@ const Experience = () => {
               className="card"
               style={{ padding: '28px 28px 28px 32px', position: 'relative', overflow: 'hidden' }}
             >
-              {/* Flagship gold left bar (replaces standard blue) */}
               <div style={{
                 position: 'absolute', left: 0, top: 0, bottom: 0, width: 3,
                 background: 'linear-gradient(to bottom, #fbbf24, #f59e0b)',
                 borderRadius: '3px 0 0 3px',
               }} />
 
-              {/* Top gradient shine */}
               <div style={{
                 position: 'absolute', insetInline: 0, top: 0, height: 2,
                 background: 'linear-gradient(90deg, #fbbf24 0%, #f59e0b 30%, transparent 70%)',
@@ -61,11 +58,9 @@ const Experience = () => {
                 borderRadius: '14px 14px 0 0',
               }} />
 
-              {/* Header row */}
               <div className="card-row" style={{ marginBottom: 20 }}>
                 <div style={{ flex: 1, minWidth: 0 }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 10, flexWrap: 'wrap' }}>
-                    {/* Icon */}
                     <span style={{
                       width: 34, height: 34, borderRadius: 9, flexShrink: 0,
                       background: 'rgba(251,191,36,0.1)', color: '#fbbf24',
@@ -74,16 +69,13 @@ const Experience = () => {
                       <FiBriefcase size={16} />
                     </span>
 
-                    {/* Role */}
                     <h3 style={{ fontSize: 19, fontWeight: 800, color: '#f1f5f9', lineHeight: 1.3 }}>
                       {exp.role}
                     </h3>
 
-                    {/* Flagship badge */}
-                    <span className="badge-flagship">🏆 Flagship</span>
+                    
                   </div>
 
-                  {/* Company + location */}
                   <div style={{ paddingLeft: 44 }}>
                     <p style={{ fontSize: 15, fontWeight: 700, color: '#fbbf24', marginBottom: 5 }}>
                       {exp.company}
@@ -96,7 +88,6 @@ const Experience = () => {
                   </div>
                 </div>
 
-                {/* Duration badge */}
                 <div style={{ paddingLeft: 44, flexShrink: 0 }}>
                   <span style={{
                     display: 'inline-flex', alignItems: 'center', gap: 6,
@@ -110,7 +101,6 @@ const Experience = () => {
                 </div>
               </div>
 
-              {/* Content */}
               <div style={{ paddingLeft: 44 }}>
                 {exp.summary && (
                   <p style={{ fontSize: 15, lineHeight: 1.65, color: '#e2e8f0', fontWeight: 500, marginBottom: 18 }}>
@@ -129,7 +119,6 @@ const Experience = () => {
                   </ul>
                 )}
 
-                {/* Tech stack */}
                 {exp.techStack && (
                   <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, paddingTop: 16, borderTop: '1px solid rgba(255,255,255,0.05)' }}>
                     {exp.techStack.map(tech => {

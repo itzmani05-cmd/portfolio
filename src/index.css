@@ -23,7 +23,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* ─── Noise texture ───────────────────────────────── */
 body::before {
   content: '';
   position: fixed;
@@ -33,7 +32,6 @@ body::before {
   z-index: 0;
 }
 
-/* ─── Ambient orbs ────────────────────────────────── */
 .bg-orb-1 {
   position: fixed;
   top: -15rem;
@@ -60,7 +58,6 @@ body::before {
   animation: floatOrb 26s ease-in-out infinite reverse;
 }
 
-/* ─── Card ────────────────────────────────────────── */
 .card {
   background: rgba(255, 255, 255, 0.018);
   border: 1px solid rgba(255, 255, 255, 0.07);
@@ -80,7 +77,6 @@ body::before {
   box-shadow: 0 20px 60px rgba(59, 130, 246, 0.1), 0 4px 20px rgba(0, 0, 0, 0.5);
 }
 
-/* Accent left-bar variant */
 .card-accent {
   padding-left: 2rem;
 }
@@ -95,7 +91,6 @@ body::before {
   border-radius: 2px;
 }
 
-/* ─── Tag pills ───────────────────────────────────── */
 .tag {
   display: inline-block;
   font-size: 0.68rem;
@@ -108,7 +103,6 @@ body::before {
   border-radius: 999px;
 }
 
-/* ─── Skill badge ─────────────────────────────────── */
 .skill-badge {
   font-size: 0.8rem;
   font-weight: 500;
@@ -124,7 +118,6 @@ body::before {
   color: #e2e8f0;
 }
 
-/* ─── Text gradient ───────────────────────────────── */
 .text-gradient {
   background: linear-gradient(135deg, #e2e8f0 0%, #7dd3fc 50%, #818cf8 100%);
   -webkit-background-clip: text;
@@ -132,37 +125,28 @@ body::before {
   background-clip: text;
 }
 
-/* ─── Divider ─────────────────────────────────────── */
 .section-divider {
   border: none;
   height: 1px;
   background: linear-gradient(to right, transparent, rgba(255,255,255,0.06), transparent);
 }
 
-/* ─── Scrollbar ───────────────────────────────────── */
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: #060b14; }
 ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 6px; }
 ::-webkit-scrollbar-thumb:hover { background: #334155; }
 
-/* ════════════════════════════════════════════════════
-   RESPONSIVE UTILITIES
-   All media-query-driven layout classes live here so
-   components can use them alongside inline styles.
-════════════════════════════════════════════════════ */
-
-/* ─── SPLIT HERO ──────────────────────────────────────── */
-
-/* Full-screen hero section */
 #about {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   overflow-x: hidden;
+  padding-left:20px;
+  padding-right:20px;
+  padding-top:48px
 }
 
-/* Background layer — edge to edge */
 .hero-split-bg {
   position: absolute;
   inset: 0;
@@ -174,7 +158,7 @@ body::before {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  /* Shift right so the face is in the right half of the hero */
+  
   object-position: 62% center;
   opacity: 0.72;
   filter: saturate(1.1) brightness(0.82);
@@ -184,8 +168,7 @@ body::before {
 .hero-split-bg-overlay {
   position: absolute;
   inset: 0;
-  /* Left side: very dark for text legibility
-     Right side: almost clear so the face shows through */
+  
   background:
     linear-gradient(
       to right,
@@ -195,7 +178,7 @@ body::before {
       rgba(6, 11, 20, 0.10) 75%,
       rgba(6, 11, 20, 0.05) 100%
     ),
-    /* Top & bottom cinematic fade */
+    
     linear-gradient(
       to bottom,
       rgba(6, 11, 20, 0.60) 0%,
@@ -205,7 +188,6 @@ body::before {
     );
 }
 
-/* Grid wrapper — fills 100vh, centred with navbar offset */
 .hero-split-grid {
   position: relative;
   z-index: 2;
@@ -217,6 +199,7 @@ body::before {
   min-height: 100vh;
   padding: 88px 1.5rem 88px;
   width: 100%;
+  margin-top: 18px;
   max-width: 1440px;
   margin-left: auto;
   margin-right: auto;
@@ -237,24 +220,22 @@ body::before {
   }
 }
 
-/* ── LEFT text side ──────────────────────────────────── */
 .hero-split-left {
   display: flex;
   flex-direction: column;
   gap: 0;
   width: 100%;
-  min-width: 0;        /* allows grid item to shrink below content size */
-  overflow: hidden;    /* prevents text overflow past container */
+  min-width: 0;        
+  overflow: hidden;    
 }
 
-/* ── RIGHT floating column ───────────────────────────── */
 .hero-split-right {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
   height: 100%;
-  /* hide on mobile, show on desktop */
+  
   display: none;
 }
 @media (min-width: 900px) {
@@ -275,7 +256,6 @@ body::before {
   max-width: 260px;
 }
 
-/* Available badge */
 .hero-float-badge {
   display: inline-flex;
   align-items: center;
@@ -305,7 +285,6 @@ body::before {
   50%      { opacity:.6; transform:scale(1.3); }
 }
 
-/* Tech chips row */
 .hero-float-chips {
   display: flex;
   flex-wrap: wrap;
@@ -330,7 +309,6 @@ body::before {
   color: #fbbf24;
 }
 
-/* Glassmorphism stat card */
 .hero-float-card {
   width: 100%;
   background: rgba(6, 11, 20, 0.60);
@@ -373,7 +351,6 @@ body::before {
   letter-spacing: 0.02em;
 }
 
-/* Code snippet tag */
 .hero-float-code {
   font-family: 'Fira Code', 'Courier New', monospace;
   font-size: 0.78rem;
@@ -401,7 +378,6 @@ body::before {
   background-clip: text;
 }
 
-/* Short punchy subtitle under the name */
 .hero-tagline {
   font-size: 1rem;
   font-weight: 500;
@@ -455,7 +431,6 @@ body::before {
   margin-bottom: 36px;
 }
 
-/* Primary CTA */
 .btn-hero-primary {
   display: inline-flex;
   align-items: center;
@@ -475,7 +450,6 @@ body::before {
   box-shadow: 0 14px 40px rgba(245, 158, 11, 0.5);
 }
 
-/* Secondary CTA */
 .btn-hero-secondary {
   display: inline-flex;
   align-items: center;
@@ -497,7 +471,6 @@ body::before {
   transform: translateY(-2px);
 }
 
-/* Icon buttons (GitHub, LinkedIn) */
 .btn-hero-icon {
   display: inline-flex;
   align-items: center;
@@ -518,7 +491,6 @@ body::before {
   transform: translateY(-2px);
 }
 
-/* Mini stats strip */
 .hero-mini-stats {
   display: flex;
   align-items: center;
@@ -549,9 +521,6 @@ body::before {
   background: rgba(255, 255, 255, 0.08);
 }
 
-/* (AI voice button styles removed — feature not in use) */
-
-/* ── RIGHT portrait side ────────────────────────────── */
 .hero-split-right {
   display: flex;
   justify-content: center;
@@ -581,7 +550,6 @@ body::before {
   }
 }
 
-/* Decorative glow rings */
 .portrait-ring-1 {
   position: absolute;
   inset: -18px;
@@ -597,7 +565,6 @@ body::before {
   animation: ringPulse 3s ease-in-out infinite 1s;
 }
 
-/* Portrait image frame */
 .portrait-img-frame {
   position: absolute;
   inset: 0;
@@ -623,7 +590,7 @@ body::before {
   object-position: center top;
   display: block;
 }
-/* Amber colour tint overlay */
+
 .portrait-tint {
   position: absolute;
   inset: 0;
@@ -636,7 +603,6 @@ body::before {
   pointer-events: none;
 }
 
-/* Top-left badge */
 .portrait-badge-tl {
   position: absolute;
   top: -14px;
@@ -658,7 +624,6 @@ body::before {
   box-shadow: 0 4px 16px rgba(0,0,0,0.5);
 }
 
-/* Floating tech chips */
 .portrait-chip {
   position: absolute;
   z-index: 5;
@@ -678,7 +643,6 @@ body::before {
 .chip-node   { top: 52%;  right: -52px; animation-delay: 1.3s; }
 .chip-aws    { bottom: 18%; left: -40px; animation-delay: 0.7s; }
 
-/* ── Stagger animation classes ─────────────────────── */
 .hero-stagger-1  { opacity:0; animation: fadeInUp 0.65s cubic-bezier(.22,1,.36,1) 0.05s forwards; }
 .hero-stagger-2  { opacity:0; animation: fadeInUp 0.65s cubic-bezier(.22,1,.36,1) 0.15s forwards; }
 .hero-stagger-3  { opacity:0; animation: fadeInUp 0.65s cubic-bezier(.22,1,.36,1) 0.25s forwards; }
@@ -687,7 +651,6 @@ body::before {
 .hero-stagger-6  { opacity:0; animation: fadeInUp 0.65s cubic-bezier(.22,1,.36,1) 0.52s forwards; }
 .hero-stagger-img{ opacity:0; animation: fadeInRight 0.8s cubic-bezier(.22,1,.36,1) 0.3s  forwards; }
 
-/* ── New keyframes ──────────────────────────────────── */
 @keyframes fadeInRight {
   from { opacity: 0; transform: translateX(40px); }
   to   { opacity: 1; transform: translateX(0); }
@@ -701,7 +664,6 @@ body::before {
   50%      { transform: translateY(-6px); }
 }
 
-/* ─── Navbar: show/hide desktop vs mobile ─────────── */
 .nav-links-desktop {
   display: none;
   align-items: center;
@@ -716,7 +678,6 @@ body::before {
 }
 @media (min-width: 768px) { .nav-mobile-btn { display: none; } }
 
-/* ─── Projects grid ───────────────────────────────── */
 .grid-projects {
   display: grid;
   grid-template-columns: 1fr;
@@ -726,7 +687,6 @@ body::before {
 @media (min-width: 600px) { .grid-projects { grid-template-columns: repeat(2, 1fr); } }
 .grid-projects > * { height: 100%; }
 
-/* ─── Skills grid ─────────────────────────────────── */
 .grid-skills {
   display: grid;
   grid-template-columns: 1fr;
@@ -734,7 +694,6 @@ body::before {
 }
 @media (min-width: 640px) { .grid-skills { grid-template-columns: repeat(2, 1fr); } }
 
-/* ─── Card row (experience / education) ───────────── */
 .card-row {
   display: flex;
   flex-direction: column;
@@ -749,7 +708,6 @@ body::before {
   }
 }
 
-/* ─── About CTA buttons row ───────────────────────── */
 .btn-row {
   display: flex;
   flex-wrap: wrap;
@@ -757,7 +715,6 @@ body::before {
   align-items: center;
 }
 
-/* ─── Footer bottom bar ───────────────────────────── */
 .footer-bottom {
   display: flex;
   flex-direction: column;
@@ -775,23 +732,15 @@ body::before {
   }
 }
 
-/* ─── Section padding (tighter on mobile) ─────────── */
 .section-pt { padding-top: 48px; }
 @media (min-width: 768px) { .section-pt { padding-top: 64px; } }
 
 .section-pb { padding-bottom: 32px; }
 @media (min-width: 768px) { .section-pb { padding-bottom: 48px; } }
 
-/* hero-pt overridden by #about full-screen rule above */
 .hero-pt { padding-top: 0; }
 @media (min-width: 768px) { .hero-pt { padding-top: 0; } }
 
-/* ════════════════════════════════════════════════════
-   ANIMATIONS
-   Keyframes + utility classes for all motion effects.
-════════════════════════════════════════════════════ */
-
-/* ─── Keyframes ───────────────────────────────────── */
 @keyframes fadeInUp {
   from { opacity: 0; transform: translateY(32px); }
   to   { opacity: 1; transform: translateY(0); }
@@ -825,8 +774,6 @@ body::before {
   50%       { box-shadow: 0 0 32px 8px rgba(59, 130, 246, 0.25); }
 }
 
-/* ─── Hero entrance stagger ───────────────────────── */
-/* Add class="hero-animate" to the hero section       */
 .hero-animate > * {
   opacity: 0;
   animation: fadeInUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
@@ -838,8 +785,6 @@ body::before {
 .hero-animate > *:nth-child(5) { animation-delay: 0.56s; }
 .hero-animate > *:nth-child(6) { animation-delay: 0.68s; }
 
-/* ─── Scroll reveal ───────────────────────────────── */
-/* Toggle .in-view via IntersectionObserver           */
 .reveal {
   opacity: 0;
   transform: translateY(30px);
@@ -851,7 +796,6 @@ body::before {
   transform: translateY(0);
 }
 
-/* ─── Shimmer gradient text ───────────────────────── */
 .text-shimmer {
   background: linear-gradient(
     90deg,
@@ -867,12 +811,10 @@ body::before {
   animation: shimmerFlow 4s linear infinite;
 }
 
-/* ─── Primary button pulse glow ───────────────────── */
 .btn-pulse {
   animation: pulseGlow 3s ease-in-out infinite;
 }
 
-/* ─── Skill badge micro-lift ──────────────────────── */
 .skill-badge {
   transition: border-color 0.2s, color 0.2s,
               transform 0.2s cubic-bezier(0.22, 1, 0.36, 1),
@@ -883,7 +825,6 @@ body::before {
   box-shadow: 0 4px 14px rgba(99, 102, 241, 0.22);
 }
 
-/* ─── Availability badge ──────────────────────────── */
 .availability-badge {
   display: inline-flex;
   align-items: center;
@@ -899,7 +840,6 @@ body::before {
   border-radius: 999px;
 }
 
-/* ─── Pulsing green dot (availability) ───────────── */
 .green-dot {
   width: 8px;
   height: 8px;
@@ -909,7 +849,6 @@ body::before {
   animation: greenPulse 2s ease-in-out infinite;
 }
 
-/* ─── Static green dot (contact section) ─────────── */
 .green-dot-static {
   width: 9px;
   height: 9px;
@@ -919,7 +858,6 @@ body::before {
   animation: greenPulse 2.5s ease-in-out infinite;
 }
 
-/* ─── Typewriter cursor ───────────────────────────── */
 .typewriter-cursor {
   display: inline-block;
   width: 3px;
@@ -931,7 +869,6 @@ body::before {
   animation: blink 0.9s step-end infinite;
 }
 
-/* ─── Keyframes for new elements ─────────────────── */
 @keyframes greenPulse {
   0%, 100% { opacity: 1;   transform: scale(1); }
   50%       { opacity: 0.8; transform: scale(1.2); }
@@ -942,7 +879,6 @@ body::before {
   50%       { opacity: 0; }
 }
 
-/* ─── Featured project card ───────────────────────── */
 .card-featured {
   background: rgba(59, 130, 246, 0.04);
   border-color: rgba(59, 130, 246, 0.22);
@@ -953,7 +889,6 @@ body::before {
   box-shadow: 0 24px 70px rgba(59, 130, 246, 0.12), 0 4px 24px rgba(0, 0, 0, 0.5);
 }
 
-/* ─── Flagship badge ──────────────────────────────── */
 .badge-flagship {
   font-size: 11px;
   font-weight: 700;
@@ -967,7 +902,6 @@ body::before {
   display: inline-block;
 }
 
-/* ─── Scale badge ─────────────────────────────────── */
 .badge-scale {
   font-size: 11px;
   font-weight: 600;
@@ -976,7 +910,6 @@ body::before {
   display: inline-block;
 }
 
-/* ─── Experience: flagship highlight ─────────────── */
 .exp-flagship-bar {
   position: absolute;
   left: 0; top: 0; bottom: 0;
@@ -985,11 +918,6 @@ body::before {
   border-radius: 3px;
 }
 
-/* ══════════════════════════════════════════════════════════
-   CINEMATIC INTRO
-══════════════════════════════════════════════════════════ */
-
-/* ── Line base ─────────────────────────────────────────────── */
 .ci-line {
   font-family: 'Inter', sans-serif;
   font-weight: 900;
@@ -1015,11 +943,10 @@ body::before {
   filter: blur(0);
 }
 
-/* ── Size variants ─────────────────────────────────────────── */
 .ci-line--xl {
   font-size: clamp(3.5rem, 12vw, 9rem);
   letter-spacing: 0.25em;
-  /* text-indent offsets trailing letter-spacing so the text is optically centred */
+  
   text-indent: 0.25em;
   line-height: 1.08;
   margin: 0;
@@ -1030,7 +957,7 @@ body::before {
   letter-spacing: 0.15em;
   text-indent: 0.15em;
   line-height: 1.1;
-  margin-top: 0;          /* divider provides the gap above */
+  margin-top: 0;          
   background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 40%, #f59e0b 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -1062,7 +989,6 @@ body::before {
   opacity: 0.7;
 }
 
-/* ── Flicker keyframe for extra drama ──────────────────────── */
 @keyframes ciFlicker {
   0%,100% { opacity: 1; }
   92%      { opacity: 1; }
@@ -1076,7 +1002,6 @@ body::before {
   animation: ciFlicker 4s ease-in-out infinite;
 }
 
-/* ── Amber divider between REPEAT. and MANIKANDAN ──────────── */
 .ci-divider {
   width: 0;
   height: 2px;

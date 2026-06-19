@@ -4,30 +4,28 @@ import { FaFire, FaGithub } from 'react-icons/fa';
 import { useState, useEffect, useRef } from 'react';
 import { useInView } from '../hooks/useInView';
 
-/* ─── Constants ─────────────────────────────────────────── */
 const LEVEL_COLORS = [
-  'rgba(255,255,255,0.04)',   // 0 – no contribution
-  'rgba(16,185,129,0.22)',    // 1 – low
-  'rgba(16,185,129,0.45)',    // 2 – medium
-  'rgba(16,185,129,0.70)',    // 3 – high
-  '#10b981',                  // 4 – very high
+  'rgba(255,255,255,0.04)',
+  'rgba(16,185,129,0.22)',
+  'rgba(16,185,129,0.45)',
+  'rgba(16,185,129,0.70)',
+  '#10b981',
 ];
 const MONTHS     = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 const DAY_LABELS = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
 
-/* ─── Build week-grid from flat contributions array ─────── */
 const buildGrid = (contributions) => {
   if (!contributions?.length) return [];
 
-  /* Sort ascending */
+  
   const sorted = [...contributions].sort((a, b) => new Date(a.date) - new Date(b.date));
 
-  /* Anchor to the Sunday on or before the first date */
+  
   const firstDate = new Date(sorted[0].date);
   const startSunday = new Date(firstDate);
   startSunday.setDate(firstDate.getDate() - firstDate.getDay());
 
-  /* Map date-string → {count, level} */
+  
   const byDate = {};
   sorted.forEach(c => { byDate[c.date] = { count: c.count, level: c.level }; });
 
@@ -56,7 +54,6 @@ const buildGrid = (contributions) => {
   return weeks;
 };
 
-/* ─── Animated counter ───────────────────────────────────── */
 const AnimatedCounter = ({ end, suffix = '', color = '#f1f5f9', started }) => {
   const [count, setCount]  = useState(0);
   const rafRef = useRef(null);
@@ -88,23 +85,17 @@ const AnimatedCounter = ({ end, suffix = '', color = '#f1f5f9', started }) => {
   );
 };
 
-/* ─── Section ────────────────────────────────────────────── */
 const GithubStats = () => {
   const { githubStats, contact } = data;
+  const username = contact.github.split('/').filter(Boolean).pop();
   const [ref, inView] = useInView(0.1);
-  const [started,  setStarted]  = useState(false);
   const [repoCount, setRepoCount] = useState(Number(githubStats?.totalRepositories) || 0);
-  const [tooltip,  setTooltip]  = useState(null);
-  const [heatmap,  setHeatmap]  = useState([]);
-  const [loading,  setLoading]  = useState(true);
+  const [tooltip, setTooltip] = useState(null);
+  const [heatmap, setHeatmap] = useState([]);
+  const [loading, setLoading] = useState(Boolean(username));
 
-  /* Trigger counters */
-  useEffect(() => { if (inView && !started) setStarted(true); }, [inView, started]);
-
-  /* Fetch real contribution data */
   useEffect(() => {
-    const username = contact.github.split('/').filter(Boolean).pop();
-    if (!username) { setLoading(false); return; }
+    if (!username) return;
 
     fetch(`https://github-contributions-api.jogruber.de/v4/${username}?y=last`)
       .then(r => r.json())
@@ -113,21 +104,20 @@ const GithubStats = () => {
       })
       .catch(() => {})
       .finally(() => setLoading(false));
-  }, [contact.github]);
+  }, [username]);
 
-  /* Also fetch live repo count */
   useEffect(() => {
-    const username = contact.github.split('/').filter(Boolean).pop();
     if (!username) return;
+
     fetch(`https://api.github.com/users/${username}`)
       .then(r => r.json())
       .then(d => { if (d.public_repos !== undefined) setRepoCount(d.public_repos); })
       .catch(() => {});
-  }, [contact.github]);
+  }, [username]);
 
   if (!githubStats) return null;
 
-  /* Month labels from the grid */
+  
   const monthLabels = [];
   let lastMonth = -1;
   heatmap.forEach((week, wi) => {
@@ -146,7 +136,6 @@ const GithubStats = () => {
 
   return (
     <section id="github" className="section-pt section-pb">
-      {/* Heading */}
       <span style={{ fontSize: 11, fontWeight: 600, letterSpacing: '0.16em', textTransform: 'uppercase', color: '#3b82f6', marginBottom: 10, display: 'block' }}>
         Open Source
       </span>
@@ -157,7 +146,6 @@ const GithubStats = () => {
         A snapshot of my commit history, contribution streaks, and open-source work.
       </p>
 
-      {/* ── Stat Cards ── */}
       <div
         ref={ref}
         style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(190px, 1fr))', gap: 16, marginBottom: 32 }}
@@ -176,7 +164,7 @@ const GithubStats = () => {
             <div style={{ width: 42, height: 42, borderRadius: 11, background: bg, color, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 10, border: `1px solid ${border}` }}>
               <Icon size={20} />
             </div>
-            <AnimatedCounter end={value} suffix={suffix} color={color} started={started} />
+            <AnimatedCounter end={value} suffix={suffix} color={color} started={inView} />
             <span style={{ fontSize: 11, fontWeight: 700, color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.07em', marginTop: 4 }}>
               {label}
             </span>
@@ -185,12 +173,10 @@ const GithubStats = () => {
         ))}
       </div>
 
-      {/* ── Heatmap ── */}
       <div
         className={`card reveal${inView ? ' in-view' : ''}`}
         style={{ padding: '24px 28px', overflowX: 'auto', transitionDelay: '0.38s' }}
       >
-        {/* Header */}
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 14, flexWrap: 'wrap', gap: 8 }}>
           <h3 style={{ fontSize: 14, fontWeight: 700, color: '#e2e8f0' }}>Contribution Activity</h3>
           <div style={{
@@ -205,7 +191,7 @@ const GithubStats = () => {
         </div>
 
         {loading ? (
-          /* Loading skeleton — full width */
+          
           <div style={{ display: 'flex', gap: 2, width: '100%' }}>
             {Array.from({ length: 53 }).map((_, wi) => (
               <div key={wi} style={{ display: 'flex', flexDirection: 'column', gap: 2, flex: 1 }}>
@@ -217,10 +203,8 @@ const GithubStats = () => {
           </div>
         ) : (
           <>
-            {/* Full-width wrapper */}
             <div style={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
 
-              {/* Month labels — percentage-positioned relative to grid */}
               <div style={{ position: 'relative', height: 16, marginBottom: 4, paddingLeft: 28, width: '100%' }}>
                 {monthLabels.map(({ label, wi }) => (
                   <span
@@ -236,9 +220,7 @@ const GithubStats = () => {
                 ))}
               </div>
 
-              {/* Day labels + grid */}
               <div style={{ display: 'flex', gap: 4, alignItems: 'flex-start', width: '100%' }}>
-                {/* Day labels */}
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 2, flexShrink: 0 }}>
                   {DAY_LABELS.map((d, i) => (
                     <span key={d} style={{ fontSize: 9, color: '#334155', height: 11, lineHeight: '11px', width: 24, textAlign: 'right' }}>
@@ -247,7 +229,6 @@ const GithubStats = () => {
                   ))}
                 </div>
 
-                {/* Weeks grid — each column stretches to fill */}
                 <div style={{ display: 'flex', gap: 2, flex: 1, width: '100%' }}>
                   {heatmap.map((week, wi) => (
                     <div key={wi} style={{ display: 'flex', flexDirection: 'column', gap: 2, flex: 1, minWidth: 0 }}>
@@ -272,7 +253,6 @@ const GithubStats = () => {
                 </div>
               </div>
 
-              {/* Legend */}
               <div style={{ display: 'flex', alignItems: 'center', gap: 5, marginTop: 12, justifyContent: 'flex-end' }}>
                 <span style={{ fontSize: 10, color: '#334155', marginRight: 2 }}>Less</span>
                 {LEVEL_COLORS.map((bg, i) => (
@@ -281,12 +261,11 @@ const GithubStats = () => {
                 <span style={{ fontSize: 10, color: '#334155', marginLeft: 2 }}>More</span>
               </div>
 
-            </div>{/* end full-width wrapper */}
+            </div>
           </>
         )}
       </div>
 
-      {/* CTA */}
       <div style={{ textAlign: 'center', marginTop: 32 }}>
         <a
           href={contact.github}

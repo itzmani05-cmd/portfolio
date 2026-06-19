@@ -1,5 +1,5 @@
 import data from '../data/portfolioData.json';
-import { FiGithub, FiLinkedin, FiMail, FiArrowUp } from 'react-icons/fi';
+import { FiGithub, FiLinkedin, FiMail } from 'react-icons/fi';
 
 const socialLinks = [
   { key: 'email',    icon: FiMail,     label: 'Email',    getHref: (c) => `mailto:${c.email}` },
@@ -20,7 +20,6 @@ const Footer = ({ container }) => {
     }}>
       <div style={container}>
 
-        {/* Top row — branding + social icons */}
         <div style={{
           display: 'flex',
           alignItems: 'center',
@@ -30,7 +29,6 @@ const Footer = ({ container }) => {
           marginBottom: 24,
         }}>
 
-          {/* Branding */}
           <div>
             <div style={{
               display: 'flex', alignItems: 'center', gap: 10, marginBottom: 6,
@@ -53,7 +51,6 @@ const Footer = ({ container }) => {
             </p>
           </div>
 
-          {/* Social icons */}
           <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
             {socialLinks.map(({ key, icon: Icon, label, getHref }) => {
               const href = getHref(contact);
@@ -93,10 +90,8 @@ const Footer = ({ container }) => {
           </div>
         </div>
 
-        {/* Divider */}
         <hr style={{ border: 'none', borderTop: '1px solid rgba(255,255,255,0.05)', margin: '0 0 20px' }} />
 
-        {/* Bottom row — copyright + back to top */}
         <div style={{
           display: 'flex',
           alignItems: 'center',
@@ -107,23 +102,6 @@ const Footer = ({ container }) => {
           <p style={{ fontSize: 12, color: '#334155', margin: 0 }}>
             © {new Date().getFullYear()} <span style={{ color: '#475569' }}>{about.name}</span>. All rights reserved.
           </p>
-
-          <button
-            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            aria-label="Scroll to top"
-            style={{
-              display: 'inline-flex', alignItems: 'center', gap: 6,
-              fontSize: 12, fontWeight: 600, color: '#475569',
-              background: 'rgba(255,255,255,0.04)',
-              border: '1px solid rgba(255,255,255,0.07)',
-              borderRadius: 8, padding: '6px 14px', cursor: 'pointer',
-              transition: 'color 0.2s, background 0.2s',
-            }}
-            onMouseEnter={e => { e.currentTarget.style.color = '#e2e8f0'; e.currentTarget.style.background = 'rgba(255,255,255,0.08)'; }}
-            onMouseLeave={e => { e.currentTarget.style.color = '#475569'; e.currentTarget.style.background = 'rgba(255,255,255,0.04)'; }}
-          >
-            <FiArrowUp size={13} /> Back to top
-          </button>
         </div>
 
       </div>

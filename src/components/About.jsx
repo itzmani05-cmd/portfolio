@@ -1,9 +1,11 @@
-import { useState, useEffect, useRef, useCallback } from 'react';
-import { Player } from '@lottiefiles/react-lottie-player';
+import { useEffect, useState } from 'react';
 import data from '../data/portfolioData.json';
 import {
-  FiGithub, FiLinkedin, FiArrowRight, FiMapPin,
-  FiDownload, FiCode, FiMic, FiSquare,
+  FiArrowRight,
+  FiCode,
+  FiDownload,
+  FiGithub,
+  FiLinkedin,
 } from 'react-icons/fi';
 
 const roles = [
@@ -13,135 +15,42 @@ const roles = [
   'SYSTEM DESIGNER',
 ];
 
-const VOICE_SCRIPT = `
-Code. Ship. Repeat.
-
-I'm Manikandan. Full Stack Developer. Tamil Nadu, India.
-
-While others are still learning — I'm already in production.
-
-At 20 years old, as a Computer Science undergrad, I architected and deployed a government-grade platform — live — managing over two hundred thousand engineering seats across five hundred colleges across Tamil Nadu. Not a side project. A real system. Real stakes.
-
-I don't just write code. I build infrastructure that works at scale.
-
-MERN stack. AWS. React Native. Nginx. Real-time dashboards. Cloud deployments. I've done it all — solo — while still in college.
-
-Three production apps. Hundreds of thousands of users impacted. Zero tolerance for downtime.
-
-If you need a developer who ships fast, thinks in systems, and delivers results — you found him.
-
-Let's build something extraordinary. Together.
-`.trim();
-
-/* ── Waveform bar count ───────────────────────────────────── */
-const BAR_COUNT = 28;
-
 const About = () => {
   const { about, contact } = data;
-
-  /* typewriter */
-  const [roleIndex, setRoleIndex]   = useState(0);
-  const [displayed, setDisplayed]   = useState('');
-  const [deleting, setDeleting]     = useState(false);
-  const [charIndex, setCharIndex]   = useState(0);
-
-  /* portrait load */
+  const [roleIndex, setRoleIndex] = useState(0);
+  const [displayed, setDisplayed] = useState('');
+  const [deleting, setDeleting] = useState(false);
+  const [charIndex, setCharIndex] = useState(0);
   const [imgLoaded, setImgLoaded] = useState(false);
 
-  /* voice */
-  const [speaking, setSpeaking]     = useState(false);
-  const [voiceReady, setVoiceReady] = useState(false);
-  const utterRef                    = useRef(null);
-  const heroRef                     = useRef(null);
-
-  /* ── Typewriter ─────────────────────────────────────────── */
   useEffect(() => {
     const current = roles[roleIndex];
     let timer;
+
     if (!deleting && charIndex < current.length) {
       timer = setTimeout(() => {
         setDisplayed(current.slice(0, charIndex + 1));
-        setCharIndex(c => c + 1);
+        setCharIndex((index) => index + 1);
       }, 75);
     } else if (!deleting && charIndex === current.length) {
       timer = setTimeout(() => setDeleting(true), 2200);
     } else if (deleting && charIndex > 0) {
       timer = setTimeout(() => {
         setDisplayed(current.slice(0, charIndex - 1));
-        setCharIndex(c => c - 1);
+        setCharIndex((index) => index - 1);
       }, 38);
     } else if (deleting && charIndex === 0) {
-      setDeleting(false);
-      setRoleIndex(i => (i + 1) % roles.length);
+      timer = setTimeout(() => {
+        setDeleting(false);
+        setRoleIndex((index) => (index + 1) % roles.length);
+      }, 0);
     }
+
     return () => clearTimeout(timer);
   }, [charIndex, deleting, roleIndex]);
 
-  /* ── Check voice API availability ─────────────────────── */
-  useEffect(() => {
-    if (!('speechSynthesis' in window)) return;
-    const load = () => {
-      const voices = window.speechSynthesis.getVoices();
-      if (voices.length > 0) setVoiceReady(true);
-    };
-    load();
-    window.speechSynthesis.addEventListener('voiceschanged', load);
-    return () => window.speechSynthesis.removeEventListener('voiceschanged', load);
-  }, []);
-
-  /* ── Pick best MALE voice ──────────────────────────────── */
-  const pickVoice = useCallback(() => {
-    const voices = window.speechSynthesis.getVoices();
-
-    // Priority list — all targeting deep male voices
-    const priority = [
-      v => /google uk english male/i.test(v.name),
-      v => /google us english/i.test(v.name) && v.lang === 'en-US',
-      v => /microsoft david/i.test(v.name),
-      v => /microsoft mark/i.test(v.name),
-      v => /daniel/i.test(v.name) && v.lang === 'en-GB',
-      v => /alex/i.test(v.name)   && v.lang === 'en-US',
-      v => /male/i.test(v.name)   && v.lang.startsWith('en'),
-      v => /fred/i.test(v.name),
-      v => /tom/i.test(v.name)    && v.lang.startsWith('en'),
-      v => v.lang === 'en-GB',
-      v => v.lang === 'en-US',
-      v => v.lang.startsWith('en'),
-    ];
-
-    for (const test of priority) {
-      const match = voices.find(test);
-      if (match) return match;
-    }
-    return voices[0] ?? null;
-  }, []);
-
-  /* ── Play / Stop ───────────────────────────────────────── */
-  const handleVoice = useCallback(() => {
-    if (speaking) {
-      window.speechSynthesis.cancel();
-      setSpeaking(false);
-      return;
-    }
-    const utter = new SpeechSynthesisUtterance(VOICE_SCRIPT);
-    utter.voice  = pickVoice();
-    utter.rate   = 0.88;   // slightly slower = more gravitas
-    utter.pitch  = 0.78;   // lower = deeper male voice
-    utter.volume = 1;
-    utter.onstart = () => setSpeaking(true);
-    utter.onend   = () => setSpeaking(false);
-    utter.onerror = () => setSpeaking(false);
-    utterRef.current = utter;
-    window.speechSynthesis.speak(utter);
-  }, [speaking, pickVoice]);
-
-  /* ── Cleanup on unmount ─────────────────────────────────── */
-  useEffect(() => () => window.speechSynthesis?.cancel(), []);
-
   return (
-    <section id="about" ref={heroRef} style={{ position: 'relative' }}>
-
-      {/* ── Background ─────────────────────────────────────── */}
+    <section id="about" style={{ position: 'relative' }}>
       <div className="hero-split-bg">
         <img
           src="/hero-bg.png"
@@ -153,13 +62,8 @@ const About = () => {
         <div className="hero-split-bg-overlay" />
       </div>
 
-      {/* ── Two-column grid ────────────────────────────────── */}
       <div className="hero-split-grid">
-
-        {/* LEFT ─ text */}
         <div className="hero-split-left">
-
-          {/* Availability */}
           <div style={{ marginBottom: 20 }} className="hero-stagger-1">
             <span className="availability-badge">
               <span className="green-dot" />
@@ -167,20 +71,16 @@ const About = () => {
             </span>
           </div>
 
-          {/* Name */}
           <h1 className="hero-split-name hero-stagger-2">{about.name}</h1>
 
-          {/* Role typewriter */}
           <div className="hero-split-role hero-stagger-3">
             <FiCode size={15} style={{ color: '#f59e0b', flexShrink: 0 }} />
             <span>{displayed}</span>
             <span className="typewriter-cursor" />
           </div>
 
-          {/* Bio */}
           <p className="hero-split-bio hero-stagger-5">{about.description}</p>
 
-          {/* CTA buttons */}
           <div className="hero-split-btns hero-stagger-6">
             <a href="#projects" className="btn-hero-primary">
               View My Work <FiArrowRight size={15} />
@@ -201,25 +101,7 @@ const About = () => {
           </div>
         </div>
 
-        {/* RIGHT — 3D developer Lottie animation */}
-        <div className="hero-split-right hero-stagger-img" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-          <div style={{ position: 'relative', width: '100%', maxWidth: 460 }}>
-            {/* Ambient glow behind animation */}
-            <div style={{
-              position: 'absolute', inset: '15%',
-              background: 'radial-gradient(circle, rgba(245,158,11,0.10) 0%, rgba(99,102,241,0.07) 55%, transparent 80%)',
-              borderRadius: '50%', filter: 'blur(40px)', zIndex: 0,
-              animation: 'floatOrb 7s ease-in-out infinite',
-            }} />
-            <Player
-              autoplay
-              loop
-              src="/developer.json"
-              style={{ width: '100%', height: 'auto', position: 'relative', zIndex: 1 }}
-            />
-          </div>
-        </div>
-
+        
       </div>
     </section>
   );

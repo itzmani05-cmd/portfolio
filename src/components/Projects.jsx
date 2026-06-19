@@ -1,5 +1,5 @@
 import data from '../data/portfolioData.json';
-import { FiGithub, FiChevronRight, FiZap, FiExternalLink } from 'react-icons/fi';
+import { FiChevronRight, FiExternalLink, FiGithub } from 'react-icons/fi';
 import { getTechIcon } from './TechIcon';
 import { useInView } from '../hooks/useInView';
 
@@ -24,11 +24,9 @@ const accentColors = {
   3: { line: '#60a5fa', glow: 'rgba(59,130,246,0.15)', num: '#60a5fa' },
 };
 
-/* ── Row card — horizontal line-by-line layout ── */
 const ProjectRow = ({ project, visible, delay, index }) => {
   const scale  = scaleMeta[project.projectNo];
   const accent = accentColors[project.projectNo] || accentColors[1];
-  const isFlagship = project.projectNo === 3;
 
   return (
     <div
@@ -46,14 +44,12 @@ const ProjectRow = ({ project, visible, delay, index }) => {
           overflow: 'hidden',
         }}
       >
-        {/* Left accent bar */}
         <div style={{
           position: 'absolute', left: 0, top: 0, bottom: 0, width: 3,
           background: `linear-gradient(to bottom, ${accent.line}, transparent)`,
           borderRadius: '14px 0 0 14px',
         }} />
 
-        {/* Project number */}
         <div style={{
           flexShrink: 0,
           width: 48, height: 48,
@@ -68,23 +64,10 @@ const ProjectRow = ({ project, visible, delay, index }) => {
           {String(index + 1).padStart(2, '0')}
         </div>
 
-        {/* Main content */}
         <div style={{ flex: 1, minWidth: 0 }}>
 
-          {/* Header row */}
           <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', flexWrap: 'wrap', gap: 10, marginBottom: 14 }}>
             <div>
-              {isFlagship && (
-                <span style={{
-                  display: 'inline-flex', alignItems: 'center', gap: 5,
-                  fontSize: 10, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase',
-                  color: '#f59e0b', background: 'rgba(245,158,11,0.1)',
-                  border: '1px solid rgba(245,158,11,0.25)', borderRadius: 999,
-                  padding: '3px 10px', marginBottom: 8,
-                }}>
-                  🏆 Flagship Project
-                </span>
-              )}
               <h3 style={{ fontSize: '1.1rem', fontWeight: 800, color: '#f1f5f9', lineHeight: 1.3, margin: 0 }}>
                 {project.title}
               </h3>
@@ -93,7 +76,6 @@ const ProjectRow = ({ project, visible, delay, index }) => {
               </p>
             </div>
 
-            {/* Scale badge */}
             {scale && (
               <span style={{
                 flexShrink: 0,
@@ -106,7 +88,6 @@ const ProjectRow = ({ project, visible, delay, index }) => {
             )}
           </div>
 
-          {/* Highlights — line by line */}
           {project.highlights && project.highlights.length > 0 && (
             <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 18px', display: 'flex', flexDirection: 'column', gap: 8 }}>
               {project.highlights.map((h, idx) => (
@@ -118,13 +99,11 @@ const ProjectRow = ({ project, visible, delay, index }) => {
             </ul>
           )}
 
-          {/* Footer row — tech stack + links */}
           <div style={{
             display: 'flex', alignItems: 'center', justifyContent: 'space-between',
             flexWrap: 'wrap', gap: 12,
             paddingTop: 16, borderTop: '1px solid rgba(255,255,255,0.05)',
           }}>
-            {/* Tech tags */}
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
               {project.techStack && project.techStack.map(tech => {
                 const { icon: Icon, color: iconColor } = getTechIcon(tech);
@@ -136,13 +115,7 @@ const ProjectRow = ({ project, visible, delay, index }) => {
               })}
             </div>
 
-            {/* Links */}
             <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
-              {isFlagship && (
-                <span style={{ display: 'flex', alignItems: 'center', gap: 5, fontSize: 12, color: '#475569' }}>
-                  <FiZap size={12} color="#fbbf24" /> Government-deployed
-                </span>
-              )}
               {project.githubLink && (
                 <a
                   href={project.githubLink}
@@ -176,7 +149,6 @@ const ProjectRow = ({ project, visible, delay, index }) => {
   );
 };
 
-/* ── Section ── */
 const Projects = () => {
   const { projects } = data;
   const [ref, inView] = useInView();
@@ -188,33 +160,10 @@ const Projects = () => {
       <span style={eyebrow}>Case Studies</span>
       <h2 style={sectionTitle}>Engineering Projects</h2>
 
-      {/* Outer wrapper — relative so the character can be absolute */}
       <div style={{ position: 'relative' }}>
 
-        {/* Floating boy character — top-right, above the list */}
-        <div style={{
-          position: 'absolute',
-          top: -210,
-          right: -10,
-          width: 240,
-          height: 220,
-          zIndex: 10,
-          pointerEvents: 'none',
-        }}>
-          <img
-            src="/dev-boy.png"
-            alt="Developer character"
-            style={{
-              width: '100%',
-              height: '100%',
-              objectFit: 'contain',
-              animation: 'devBoyFloat 4s ease-in-out infinite',
-              filter: 'drop-shadow(0 6px 20px rgba(0,0,0,0.4))',
-            }}
-          />
-        </div>
+        
 
-        {/* Project rows — plain stacked, no box */}
         <div
           ref={ref}
           style={{ display: 'flex', flexDirection: 'column', gap: 16 }}

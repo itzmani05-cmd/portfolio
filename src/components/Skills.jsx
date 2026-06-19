@@ -1,8 +1,6 @@
-import data from '../data/portfolioData.json';
 import { FiLayout, FiDatabase, FiTerminal, FiLayers, FiCode } from 'react-icons/fi';
 import { getTechIcon } from './TechIcon';
 import { useInView } from '../hooks/useInView';
-import { Player } from '@lottiefiles/react-lottie-player';
 
 const eyebrow = { fontSize: 11, fontWeight: 600, letterSpacing: '0.16em', textTransform: 'uppercase', color: '#3b82f6', marginBottom: 10, display: 'block' };
 const sectionTitle = { fontSize: '1.75rem', fontWeight: 700, letterSpacing: '-0.02em', color: '#f1f5f9', marginBottom: 32, lineHeight: 1.2 };
@@ -35,7 +33,6 @@ const categoryMeta = {
   },
 };
 
-/* ── Section ── */
 const Skills = () => {
   const [ref, inView] = useInView();
 
@@ -43,30 +40,10 @@ const Skills = () => {
     <section id="skills" className="section-pt section-pb">
       <span style={eyebrow}>Expertise</span>
 
-      {/* Heading row with rocket sticker on the right */}
       <div style={{ position: 'relative', marginBottom: 0 }}>
         <h2 style={sectionTitle}>Skills &amp; Tools</h2>
-
-        {/* 🚀 Rocket sticker — top right above grid */}
-        <div style={{
-          position: 'absolute',
-          top: -60,
-          right: -10,
-          width: 130,
-          height: 130,
-          pointerEvents: 'none',
-          zIndex: 5,
-        }}>
-          <Player
-            autoplay
-            loop
-            src="/skills-rocket.json"
-            style={{ width: '100%', height: '100%' }}
-          />
-        </div>
       </div>
 
-      {/* Skills grid — with extra right padding so rocket doesn't overlap last card */}
       <div
         ref={ref}
         style={{
@@ -87,7 +64,6 @@ const Skills = () => {
               style={{ transitionDelay: `${i * 0.08}s` }}
             >
               <div className="card" style={{ padding: '24px', height: '100%' }}>
-                {/* Header */}
                 <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 20 }}>
                   <div style={{
                     width: 36, height: 36, borderRadius: 10,
@@ -100,7 +76,6 @@ const Skills = () => {
                   <h3 style={{ fontSize: 14, fontWeight: 700, color: '#e2e8f0' }}>{category}</h3>
                 </div>
 
-                {/* Skill tags */}
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
                   {meta.skills.map(name => {
                     const { icon: SkillIcon, color: iconColor } = getTechIcon(name);
@@ -120,22 +95,6 @@ const Skills = () => {
             </div>
           );
         })}
-      </div>
-
-      {/* 🧑‍💻 Display man sticker — bottom right after grid */}
-      <div style={{
-        display: 'flex',
-        justifyContent: 'flex-end',
-        marginTop: -20,
-        marginRight: -10,
-        pointerEvents: 'none',
-      }}>
-        <Player
-          autoplay
-          loop
-          src="/skills-man.json"
-          style={{ width: 160, height: 160 }}
-        />
       </div>
 
       <hr className="section-divider" style={{ marginTop: 8 }} />

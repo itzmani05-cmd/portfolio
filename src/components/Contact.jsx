@@ -1,5 +1,5 @@
 import data from '../data/portfolioData.json';
-import { FiMail, FiPhone, FiGithub, FiLinkedin, FiSend, FiMapPin } from 'react-icons/fi';
+import { FiGithub, FiLinkedin, FiMail, FiMapPin } from 'react-icons/fi';
 import { FaWhatsapp } from 'react-icons/fa';
 import { useInView } from '../hooks/useInView';
 
@@ -67,7 +67,6 @@ const Contact = () => {
     <section id="contact" className="section-pt section-pb">
       <span style={eyebrow}>Get In Touch</span>
       <h2 style={sectionTitle}>Let's Build Something Great</h2>
-      {/* Location */}
       {contact.location && (
         <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 36, color: '#475569', fontSize: 13, fontWeight: 500 }}>
           <FiMapPin size={13} />
@@ -75,7 +74,6 @@ const Contact = () => {
         </div>
       )}
 
-      {/* Contact cards */}
       <div
         ref={ref}
         style={{

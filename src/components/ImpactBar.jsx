@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useInView } from '../hooks/useInView';
 
 const metrics = [
@@ -55,11 +55,6 @@ const Counter = ({ end, suffix, color, started }) => {
 
 const ImpactBar = () => {
   const [ref, inView] = useInView(0.1);
-  const [started, setStarted] = useState(false);
-
-  useEffect(() => {
-    if (inView && !started) setStarted(true);
-  }, [inView, started]);
 
   return (
     <section aria-label="Impact metrics" style={{ padding: '0 0 8px' }}>
@@ -75,14 +70,12 @@ const ImpactBar = () => {
           position: 'relative',
         }}
       >
-        {/* Top glow accent */}
         <div style={{
           position: 'absolute', top: 0, left: 0, right: 0, height: 2,
           background: 'linear-gradient(90deg, #3b82f6, #6366f1, #a78bfa, #34d399)',
           opacity: 0.7,
         }} />
 
-        {/* Radial glow bg */}
         <div style={{
           position: 'absolute', inset: 0, pointerEvents: 'none',
           background: 'radial-gradient(ellipse at 50% -10%, rgba(59,130,246,0.07) 0%, transparent 65%)',
@@ -105,7 +98,7 @@ const ImpactBar = () => {
             onMouseEnter={e => e.currentTarget.style.background = m.glow}
             onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
           >
-            <Counter end={m.end} suffix={m.suffix} color={m.color} started={started} />
+            <Counter end={m.end} suffix={m.suffix} color={m.color} started={inView} />
             <span style={{
               fontSize: 12, color: '#64748b', lineHeight: 1.5,
               whiteSpace: 'pre-line', maxWidth: 120, fontWeight: 500,

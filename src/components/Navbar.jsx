@@ -7,7 +7,7 @@ const links = ['About', 'Experience', 'Projects', 'Skills', 'Contact'];
 const Navbar = ({ container }) => {
   const [isOpen, setIsOpen]   = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const { about, contact } = data;
+  const { about } = data;
   const initials = about.name.split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase();
 
   useEffect(() => {
@@ -29,7 +29,6 @@ const Navbar = ({ container }) => {
     <nav style={navStyle}>
       <div style={{ ...container, display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: '64px' }}>
 
-        {/* Logo */}
         <a href="#" style={{ display: 'flex', alignItems: 'center', gap: '10px', textDecoration: 'none', flexShrink: 0 }}>
           <span style={{
             width: 33, height: 33, borderRadius: 9,
@@ -45,7 +44,6 @@ const Navbar = ({ container }) => {
           </span>
         </a>
 
-        {/* Desktop links */}
         <div className="nav-links-desktop">
           {links.map(link => (
             <a
@@ -59,18 +57,6 @@ const Navbar = ({ container }) => {
             </a>
           ))}
 
-          {/* Open to Opportunity badge */}
-          <span style={{
-            display: 'inline-flex', alignItems: 'center', gap: 6,
-            fontSize: 12, fontWeight: 700, padding: '5px 12px', borderRadius: 999,
-            background: 'rgba(16,185,129,0.1)', border: '1px solid rgba(16,185,129,0.28)',
-            color: '#34d399', letterSpacing: '0.03em',
-          }}>
-            <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#22c55e', boxShadow: '0 0 6px rgba(34,197,94,0.8)', display: 'inline-block' }} />
-            Open to Opportunity
-          </span>
-
-          {/* Resume download */}
           <a
             href={about.resumeLink || '/resume.pdf'}
             download
@@ -88,7 +74,6 @@ const Navbar = ({ container }) => {
           </a>
         </div>
 
-        {/* Mobile toggle */}
         <button
           onClick={() => setIsOpen(v => !v)}
           aria-label="Toggle menu"
@@ -99,7 +84,6 @@ const Navbar = ({ container }) => {
         </button>
       </div>
 
-      {/* Mobile drawer */}
       {isOpen && (
         <div style={{
           background: 'rgba(6,11,20,0.98)',
@@ -121,15 +105,6 @@ const Navbar = ({ container }) => {
             ))}
 
             <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', paddingTop: 8, borderTop: '1px solid rgba(255,255,255,0.05)', alignItems: 'center' }}>
-              <span style={{
-                display: 'inline-flex', alignItems: 'center', gap: 6,
-                fontSize: 12, fontWeight: 700, padding: '7px 14px', borderRadius: 999,
-                background: 'rgba(16,185,129,0.1)', border: '1px solid rgba(16,185,129,0.28)',
-                color: '#34d399',
-              }}>
-                <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#22c55e', boxShadow: '0 0 6px rgba(34,197,94,0.8)', display: 'inline-block' }} />
-                Open to Opportunity
-              </span>
               <a
                 href={about.resumeLink || '/resume.pdf'}
                 download

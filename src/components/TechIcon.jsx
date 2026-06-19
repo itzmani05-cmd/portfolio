@@ -2,8 +2,8 @@ import {
   SiJavascript, SiPython, SiReact, SiHtml5, SiTailwindcss, SiAntdesign,
   SiNodedotjs, SiExpress, SiNestjs, SiNginx,
   SiMysql, SiMongodb, SiSupabase, SiPrisma, SiPostgresql,
-  SiGit, SiGithub, SiInsomnia, SiFigma, SiC,
-  SiDocker, SiPostman, SiNpm
+  SiGithub, SiInsomnia, SiFigma, SiC,
+  SiPostman, SiNpm
 } from 'react-icons/si';
 import { FaJava, FaAws } from 'react-icons/fa';
 import { FiCode } from 'react-icons/fi';
