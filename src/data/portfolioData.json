@@ -31,8 +31,6 @@
         "Consolidated fragmented data across 500+ engineering colleges (courses, cutoffs, intake) into an explorable and actionable dashboard."
       ],
       "description": "A full-stack web application for exploring and analyzing data from 500+ engineering colleges, featuring advanced search, cutoff analytics, and a scalable REST API backend.",
-      "githubLink": "https://github.com/itzmani05-cmd",
-      "liveDemoLink": "",
       "techStack": ["React JS", "Node JS", "Express JS", "MongoDB", "Ant Design"]
     },
     {
@@ -45,8 +43,6 @@
         "Delivered highly reliable, scalable infrastructure to manage 200,000+ government seats across 500+ colleges with zero tolerance for downtime."
       ],
       "description": "A statewide seat-allocation system used by 500+ engineering colleges across Tamil Nadu to manage 200,000+ government seats - with admin dashboards, cloud storage, and NGINX-served production deployment.",
-      "githubLink": "https://github.com/itzmani05-cmd",
-      "liveDemoLink": "",
       "techStack": ["React JS", "Node JS", "Express JS", "MongoDB", "AWS EC2", "AWS S3", "NGINX"]
     }
   ],
@@ -67,6 +63,22 @@
         "Developed responsive, reusable React UI components ensuring cross-device access for all 500+ institution users."
       ],
       "techStack": ["React JS", "Node JS", "Express JS", "MongoDB", "AWS EC2", "AWS S3", "Antd", "NGINX"]
+    },
+    {
+      "id": 2,
+      "role": "Backend Intern",
+      "company": "Bluekode Academy",
+      "duration": "May 2026 –  Present",
+      "location": "Coimbatore, Tamil Nadu",
+      "summary": "Contributed to the backend development and database architecture of a multi-institution Learning Management System serving 500+ students.",
+      "highlights": [
+        "Contributed to the backend architecture of a multi-institution Learning Management System (LMS) designed to support 500+ students.",
+        "Designed and optimized relational database schemas for users, institutions, courses, enrollments, lesson progress tracking, and reporting.",
+        "Implemented Role-Based Access Control (RBAC) to manage permissions for students, trainers, and administrators.",
+        "Developed scalable REST APIs for course management, enrollment workflows, and student learning progress monitoring.",
+        "Created normalized database structures and indexing strategies to improve query performance, data integrity, and institutional reporting."
+      ],
+      "techStack": ["Nest JS", "Prisma ORM", "Postgre SQL", "AWS EC2", "Redis"]
     }
   ],
   "education": [
@@ -91,13 +103,13 @@
     { "id": 2, "title": "Web Developer for Beginner",        "issuer": "Simplilearn" }
   ],
   "githubStats": {
-    "totalContributions": "111",
-    "totalRange": "Oct 28, 2024 - Present",
+    "totalContributions": "134",
+    "totalRange": "Oct 28, 2025 - Present",
     "currentStreak": "3",
     "currentDate": "May 20 - May 22",
-    "longestStreak": "3",
-    "longestRange": "Mar 15, 2025 - Mar 17, 2025",
-    "totalRepositories": "24"
+    "longestStreak": "6",
+    "longestRange": "Jun 10, 2026 - Jun 15, 2026",
+    "totalRepositories": "32"
   },
   "contact": {
     "email":    "itzmani2005@gmail.com",

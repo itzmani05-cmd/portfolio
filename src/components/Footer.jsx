@@ -40,7 +40,7 @@ const Footer = ({ container }) => {
                 fontSize: 10, fontWeight: 800, color: '#fff', flexShrink: 0,
                 boxShadow: '0 4px 12px rgba(59,130,246,0.35)',
               }}>
-                {about.name.split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase()}
+                {about.name.split(' ').map(w => w[0]).join('').slice(0, 1).toUpperCase()}
               </span>
               <span style={{ fontWeight: 700, fontSize: 15, color: '#e2e8f0', letterSpacing: '-0.01em' }}>
                 Manikandan's Portfolio
@@ -100,7 +100,7 @@ const Footer = ({ container }) => {
           gap: 12,
         }}>
           <p style={{ fontSize: 12, color: '#334155', margin: 0 }}>
-            © {new Date().getFullYear()} <span style={{ color: '#475569' }}>{about.name}</span>. All rights reserved.
+            © All rights reserved.
           </p>
         </div>
 
