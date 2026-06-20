@@ -1,5 +1,6 @@
 import data from '../data/portfolioData.json';
 import { FiGithub, FiLinkedin, FiMail } from 'react-icons/fi';
+import logo from '../assets/laptop.png';
 
 const socialLinks = [
   { key: 'email',    icon: FiMail,     label: 'Email',    getHref: (c) => `mailto:${c.email}` },
@@ -33,15 +34,17 @@ const Footer = ({ container }) => {
             <div style={{
               display: 'flex', alignItems: 'center', gap: 10, marginBottom: 6,
             }}>
-              <span style={{
-                width: 30, height: 30, borderRadius: 8,
-                background: 'linear-gradient(135deg, #3b82f6, #6366f1)',
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                fontSize: 10, fontWeight: 800, color: '#fff', flexShrink: 0,
-                boxShadow: '0 4px 12px rgba(59,130,246,0.35)',
-              }}>
-                {about.name.split(' ').map(w => w[0]).join('').slice(0, 1).toUpperCase()}
-              </span>
+              <img
+                          src={logo}
+                          alt="Logo"
+                          style={{
+                            width: 33,
+                            height: 33,
+                            borderRadius: 9,
+                            objectFit: 'cover',
+                            
+                          }}
+                        />
               <span style={{ fontWeight: 700, fontSize: 15, color: '#e2e8f0', letterSpacing: '-0.01em' }}>
                 Manikandan's Portfolio
               </span>

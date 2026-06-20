@@ -1,6 +1,7 @@
 import { FiMenu, FiX, FiDownload } from 'react-icons/fi';
 import { useState, useEffect } from 'react';
 import data from '../data/portfolioData.json';
+import logo from '../assets/laptop.png';
 
 const links = ['About', 'Experience', 'Projects', 'Skills', 'Contact'];
 
@@ -8,8 +9,6 @@ const Navbar = ({ container }) => {
   const [isOpen, setIsOpen]   = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const { about } = data;
-  const initials = about.name.split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase();
-
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener('scroll', onScroll, { passive: true });
@@ -30,15 +29,17 @@ const Navbar = ({ container }) => {
       <div style={{ ...container, display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: '64px' }}>
 
         <a href="#" style={{ display: 'flex', alignItems: 'center', gap: '10px', textDecoration: 'none', flexShrink: 0 }}>
-          <span style={{
-            width: 33, height: 33, borderRadius: 9,
-            background: 'linear-gradient(135deg, #3b82f6, #6366f1)',
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-            fontSize: 11, fontWeight: 800, color: '#fff', flexShrink: 0,
-            boxShadow: '0 4px 12px rgba(59,130,246,0.35)',
-          }}>
-            {initials}
-          </span>
+          <img
+            src={logo}
+            alt="Logo"
+            style={{
+              width: 33,
+              height: 33,
+              borderRadius: 9,
+              objectFit: 'cover',
+              
+            }}
+          />
           <span style={{ fontWeight: 700, color: '#e2e8f0', letterSpacing: '-0.01em', fontSize: 15 }}>
             Manikandan's Portfolio
           </span>

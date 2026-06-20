@@ -158,12 +158,9 @@ const Projects = () => {
   return (
     <section id="projects" className="section-pt section-pb">
       <span style={eyebrow}>Case Studies</span>
-      <h2 style={sectionTitle}>Engineering Projects</h2>
+      <h2 style={sectionTitle}>Projects</h2>
 
       <div style={{ position: 'relative' }}>
-
-        
-
         <div
           ref={ref}
           style={{ display: 'flex', flexDirection: 'column', gap: 16 }}

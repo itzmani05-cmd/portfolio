@@ -2,8 +2,8 @@
   "about": {
     "name": "Manikandan M",
     "title": "Full Stack Developer",
-    "tagline": "I build systems that scale — from student projects to government infrastructure.",
-    "description": "While most developers write code, I ship products. As a CS undergrad in Tamil Nadu, I've freelanced an EdTech app used by real students. I specialize in the full MERN stack, cloud infrastructure, and turning complex backend challenges into clean, fast, and reliable user experiences.",
+    "tagline": "Building scalable web applications with a focus on performance, reliability, and user experience.",
+    "description": "A Computer Science undergraduate passionate about designing and developing full-stack applications. From educational platforms and data-driven dashboards to large-scale admission systems, I enjoy transforming complex requirements into efficient, maintainable, and user-focused solutions. My interests span backend architecture, cloud deployment, and creating products that deliver real-world value.",
     "resumeLink": "/resume.pdf"
   },
   "projects": [
@@ -70,15 +70,15 @@
       "company": "Bluekode Academy",
       "duration": "May 2026 –  Present",
       "location": "Coimbatore, Tamil Nadu",
-      "summary": "Contributed to the backend development and database architecture of a multi-institution Learning Management System serving 500+ students.",
+      "summary": "Working on the backend development of a multi-institution Learning Management System (LMS) using NestJS, Prisma ORM, and PostgreSQL.",
       "highlights": [
-        "Contributed to the backend architecture of a multi-institution Learning Management System (LMS) designed to support 500+ students.",
-        "Designed and optimized relational database schemas for users, institutions, courses, enrollments, lesson progress tracking, and reporting.",
-        "Implemented Role-Based Access Control (RBAC) to manage permissions for students, trainers, and administrators.",
-        "Developed scalable REST APIs for course management, enrollment workflows, and student learning progress monitoring.",
-        "Created normalized database structures and indexing strategies to improve query performance, data integrity, and institutional reporting."
-      ],
-      "techStack": ["Nest JS", "Prisma ORM", "Postgre SQL", "AWS EC2", "Redis"]
+          "Contributing to the design of database schemas for institutions, users, courses, enrollments, and student progress tracking.",
+          "Developing REST APIs for course management, enrollment workflows, and learning progress monitoring.",
+          "Implementing Role-Based Access Control (RBAC) for students, trainers, and administrators.",
+          "Collaborating with the development team to translate business requirements into scalable backend solutions.",
+          "Learning and applying backend development best practices using NestJS, Prisma ORM, and PostgreSQL."
+        ],
+      "techStack": ["Nest JS", "Typescript","Prisma ORM", "Postgre SQL", "AWS EC2", "Redis"]
     }
   ],
   "education": [
@@ -87,8 +87,7 @@
       "degree": "BE – Computer Science and Engineering",
       "institution": "Government College of Technology, Coimbatore",
       "year": "Sep 2023 – Present",
-      "cgpa": "7.3 / 10",
-      "note": "Shipped production systems during active enrollment."
+      "cgpa": "7.3 / 10"
     }
   ],
   "skills": {
