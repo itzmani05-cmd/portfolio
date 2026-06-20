@@ -442,12 +442,12 @@ body::before {
   color: #060b14;
   background: linear-gradient(135deg, #f59e0b, #fbbf24);
   text-decoration: none;
-  box-shadow: 0 8px 32px rgba(245, 158, 11, 0.35);
-  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 1px 4px rgba(245, 158, 11, 0.35);
+  transition: transform 0.2s, box-shadow 0.1s;
 }
 .btn-hero-primary:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 14px 40px rgba(245, 158, 11, 0.5);
+  transform: translateY(-2px);
+  /* box-shadow: 0 14px 40px rgba(245, 158, 11, 0.5); */
 }
 
 .btn-hero-secondary {
