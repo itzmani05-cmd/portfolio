@@ -4,7 +4,7 @@
     "title": "Full Stack Developer",
     "tagline": "Building scalable web applications with a focus on performance, reliability, and user experience.",
     "description": "A Computer Science undergraduate passionate about designing and developing full-stack applications. From educational platforms and data-driven dashboards to large-scale admission systems, I enjoy transforming complex requirements into efficient, maintainable, and user-focused solutions. My interests span backend architecture, cloud deployment, and creating products that deliver real-world value.",
-    "resumeLink": "/resume.pdf"
+    "resumeLink": "https://drive.google.com/file/d/1vOSh3SlTZ5SUDnzjcd7CFDLcTeWLmJIm/view?usp=sharing"
   },
   "projects": [
     {
@@ -17,8 +17,8 @@
         "Empowered 6+ administrators to evaluate submissions efficiently and track activity for 100+ active students."
       ],
       "description": "A freelance EdTech platform delivering real-time quiz participation and activity tracking. Built the full product — mobile app, admin portal, backend, and cloud deployment — independently.",
-      "githubLink": "https://github.com/itzmani05-cmd",
-      "liveDemoLink": "",
+      "githubLink": "https://github.com/itzmani05-cmd/C3-App-frontend",
+      "liveDemoLink": "https://drive.google.com/file/d/1JbOt9YrOmIdPuiAGHMS7vZT7gn-qmzhI/view?usp=sharing",
       "techStack": ["React JS", "React Native", "Node JS", "Express JS", "MongoDB"]
     },
     {

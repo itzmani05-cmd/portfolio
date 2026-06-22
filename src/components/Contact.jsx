@@ -13,7 +13,6 @@ const contactCards = [
     border: 'rgba(59,130,246,0.2)',
     getHref: (c) => `mailto:${c.email}`,
     getValue: (c) => c.email,
-    note: 'Best for formal enquiries',
   },
   {
     key: 'whatsapp',
@@ -24,7 +23,6 @@ const contactCards = [
     border: 'rgba(16,185,129,0.2)',
     getHref: (c) => `https://wa.me/${c.phone?.replace(/[^0-9]/g, '')}`,
     getValue: (c) => c.phone,
-    note: 'Quickest response',
   },
   {
     key: 'linkedin',
@@ -35,7 +33,6 @@ const contactCards = [
     border: 'rgba(59,130,246,0.18)',
     getHref: (c) => c.linkedin,
     getValue: () => 'linkedin.com/in/manikandan005',
-    note: 'Connect professionally',
   },
   {
     key: 'github',
@@ -46,7 +43,6 @@ const contactCards = [
     border: 'rgba(255,255,255,0.1)',
     getHref: (c) => c.github,
     getValue: () => 'github.com/itzmani05-cmd',
-    note: 'Browse my code',
   },
 ];
 
